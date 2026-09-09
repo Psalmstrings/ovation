@@ -29,8 +29,8 @@ class OvationDatabase {
       // Dynamically import Firebase v12 SDK modules
       const { initializeApp } = await import("https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js");
       const { getAnalytics } = await import("https://www.gstatic.com/firebasejs/12.18.0/firebase-analytics.js");
-      const { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, onSnapshot } = await import("https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js");
-      const { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js");
+      const { getFirestore, collection, addDoc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, doc, query, orderBy, onSnapshot } = await import("https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js");
+      const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } = await import("https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js");
 
       const app = initializeApp(FIREBASE_CONFIG);
       try { this.analytics = getAnalytics(app); } catch (e) { console.log("Analytics optional load"); }
@@ -39,8 +39,8 @@ class OvationDatabase {
       this.auth = getAuth(app);
       
       // Store modular helper references
-      this.fs = { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, onSnapshot };
-      this.authMethods = { signInWithEmailAndPassword, signOut, onAuthStateChanged };
+      this.fs = { collection, addDoc, getDocs, getDoc, setDoc, updateDoc, deleteDoc, doc, query, orderBy, onSnapshot };
+      this.authMethods = { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile };
 
       this.useLocalStorage = false;
       console.log("🔥 Connected to Firebase Project: ovation-music successfully.");
@@ -65,7 +65,6 @@ class OvationDatabase {
       try {
         const colRef = this.fs.collection(this.db, 'enquiries');
         const docRef = await this.fs.addDoc(colRef, payload);
-        // Also save to local storage as double backup
         this.saveToLocalBackup(payload, docRef.id);
         return { success: true, id: docRef.id, mode: 'firestore' };
       } catch (error) {
@@ -73,7 +72,6 @@ class OvationDatabase {
       }
     }
 
-    // Local Storage Fallback
     const id = 'LOCAL_' + Date.now();
     payload.id = id;
     this.saveToLocalBackup(payload, id);
@@ -123,7 +121,6 @@ class OvationDatabase {
         console.warn("Snapshot subscription fallback:", err);
       }
     }
-    // Fallback to initial local fetch
     callback(await this.getEnquiries());
     return () => {};
   }
@@ -142,7 +139,6 @@ class OvationDatabase {
       }
     }
 
-    // Always update local storage as well
     const existing = JSON.parse(localStorage.getItem('ovation_enquiries') || '[]');
     const index = existing.findIndex(item => item.id === id);
     if (index !== -1) {
@@ -172,29 +168,150 @@ class OvationDatabase {
     return { success: true };
   }
 
-  /* ===== AUTHENTICATION METHODS ===== */
-  async loginAdmin(email, password) {
-    await this.initPromise;
-    
-    // Master fallback passkey for admin dashboard access
-    if (email === "admin@ovationmusic.com" && password === "ovation2026") {
-      const sessionUser = { email: "admin@ovationmusic.com", role: "Super Admin", uid: "ADMIN_MASTER" };
-      localStorage.setItem('ovation_admin_session', JSON.stringify(sessionUser));
-      return { success: true, user: sessionUser };
-    }
+  /* ===== AUTHENTICATION & USER PROFILE METHODS ===== */
 
-    if (!this.useLocalStorage && this.auth) {
+  /**
+   * Create a new user account in Firebase Auth & store user profile in Firestore
+   */
+  async signUpUser({ fullName, email, password, role = 'Admin' }) {
+    await this.initPromise;
+
+    if (!this.useLocalStorage && this.auth && this.db) {
       try {
-        const userCred = await this.authMethods.signInWithEmailAndPassword(this.auth, email, password);
-        const user = { email: userCred.user.email, uid: userCred.user.uid, role: 'Admin' };
-        localStorage.setItem('ovation_admin_session', JSON.stringify(user));
-        return { success: true, user };
+        // 1. Create account in Firebase Auth
+        const userCred = await this.authMethods.createUserWithEmailAndPassword(this.auth, email, password);
+        const user = userCred.user;
+
+        // 2. Set Display Name in Firebase Auth profile
+        try {
+          await this.authMethods.updateProfile(user, { displayName: fullName });
+        } catch (e) {
+          console.log("Auth profile update notice:", e);
+        }
+
+        // 3. Save User Profile Document in Firestore 'users' collection
+        const userProfile = {
+          uid: user.uid,
+          fullName,
+          email,
+          role,
+          createdAt: new Date().toISOString()
+        };
+
+        const userDocRef = this.fs.doc(this.db, 'users', user.uid);
+        await this.fs.setDoc(userDocRef, userProfile);
+
+        // Save session locally
+        localStorage.setItem('ovation_admin_session', JSON.stringify(userProfile));
+
+        return { success: true, user: userProfile, mode: 'firebase' };
       } catch (err) {
+        console.error("Firebase SignUp Error:", err);
         return { success: false, error: err.message };
       }
     }
 
-    return { success: false, error: "Invalid credentials. Use admin@ovationmusic.com / ovation2026 or set up Firebase Auth user." };
+    // Local Storage Fallback Mode
+    const localUsers = JSON.parse(localStorage.getItem('ovation_users') || '[]');
+    if (localUsers.find(u => u.email === email)) {
+      return { success: false, error: "An account with this email already exists locally." };
+    }
+
+    const userProfile = {
+      uid: 'LOCAL_USER_' + Date.now(),
+      fullName,
+      email,
+      role,
+      password,
+      createdAt: new Date().toISOString()
+    };
+
+    localUsers.push(userProfile);
+    localStorage.setItem('ovation_users', JSON.stringify(localUsers));
+    localStorage.setItem('ovation_admin_session', JSON.stringify(userProfile));
+
+    return { success: true, user: userProfile, mode: 'local' };
+  }
+
+  /**
+   * Sign In User via Firebase Auth and RETRIEVE User Profile Data from Firebase Firestore
+   */
+  async loginUser(email, password) {
+    await this.initPromise;
+    
+    // Master Admin Passkey Fallback
+    if (email === "admin@ovationmusic.com" && password === "Admin@Ovation") {
+      const sessionUser = { 
+        fullName: "Ovation Super Admin", 
+        email: "admin@ovationmusichouse.com", 
+        role: "Super Admin", 
+        uid: "ADMIN_MASTER" 
+      };
+      localStorage.setItem('ovation_admin_session', JSON.stringify(sessionUser));
+      return { success: true, user: sessionUser, source: 'master' };
+    }
+
+    if (!this.useLocalStorage && this.auth && this.db) {
+      try {
+        // 1. Authenticate with Firebase Auth
+        const userCred = await this.authMethods.signInWithEmailAndPassword(this.auth, email, password);
+        const uid = userCred.user.uid;
+
+        // 2. Retrieve User Data from Firestore 'users' collection
+        let userProfile = null;
+        try {
+          const userDocRef = this.fs.doc(this.db, 'users', uid);
+          const docSnap = await this.fs.getDoc(userDocRef);
+          
+          if (docSnap.exists()) {
+            userProfile = docSnap.data();
+          } else {
+            // Fallback profile if user document doesn't exist yet
+            userProfile = {
+              uid: uid,
+              fullName: userCred.user.displayName || email.split('@')[0],
+              email: email,
+              role: 'Admin',
+              createdAt: new Date().toISOString()
+            };
+            // Create the doc for future reads
+            await this.fs.setDoc(userDocRef, userProfile);
+          }
+        } catch (e) {
+          console.warn("Firestore user profile fetch notice:", e);
+          userProfile = {
+            uid: uid,
+            fullName: userCred.user.displayName || email,
+            email: email,
+            role: 'Admin'
+          };
+        }
+
+        // Store active session profile locally
+        localStorage.setItem('ovation_admin_session', JSON.stringify(userProfile));
+        return { success: true, user: userProfile, source: 'firestore' };
+      } catch (err) {
+        console.error("Firebase Login Error:", err);
+        return { success: false, error: err.message };
+      }
+    }
+
+    // Local Storage Fallback check
+    const localUsers = JSON.parse(localStorage.getItem('ovation_users') || '[]');
+    const foundUser = localUsers.find(u => u.email === email && u.password === password);
+    if (foundUser) {
+      localStorage.setItem('ovation_admin_session', JSON.stringify(foundUser));
+      return { success: true, user: foundUser, source: 'local' };
+    }
+
+    return { success: false, error: "Invalid login credentials. Please check your email and password." };
+  }
+
+  /**
+   * Alias for backward compatibility
+   */
+  async loginAdmin(email, password) {
+    return this.loginUser(email, password);
   }
 
   logoutAdmin() {

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — OVATION MUSIC HOUSE</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <style>
+    .signup-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+      background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.08) 0%, var(--color-navy-dark) 75%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signup-card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2.25rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(212, 175, 55, 0.12);
+      backdrop-filter: blur(16px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .signup-logo {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .signup-logo .logo-icon {
+      margin: 0 auto 0.75rem auto;
+      width: 54px;
+      height: 54px;
+      font-size: 1.8rem;
+    }
+
+    .signup-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-text-white);
+      margin-bottom: 0.35rem;
+    }
+
+    .signup-subtitle {
+      font-size: 0.85rem;
+      color: var(--color-text-subtle);
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-white);
+      font-size: 0.92rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-gold-primary);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+      background: rgba(30, 41, 59, 1);
+    }
+
+    .signup-btn {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.85rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .alert-box {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      display: none;
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #EF4444;
+      color: #FCA5A5;
+    }
+
+    .alert-success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22C55E;
+      color: #86EFAC;
+    }
+
+    .login-link-box {
+      margin-top: 1.75rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--color-text-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.25rem;
+    }
+
+    .login-link-box a {
+      color: var(--color-gold-primary);
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 0.35rem;
+    }
+
+    .login-link-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-wrapper">
+    <!-- Particle Canvas background element -->
+    <canvas id="heroCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.4;"></canvas>
+
+    <div class="signup-card reveal-fade-up">
+      <div class="signup-logo">
+        <a href="index.html" class="brand-logo" style="justify-content: center;">
+          <div class="logo-icon">O</div>
+        </a>
+        <h1 class="signup-title">CREATE <span class="text-gold">ACCOUNT</span></h1>
+        <p class="signup-subtitle">Register to connect with Ovation Music House & Firebase</p>
+      </div>
+
+      <div class="alert-box alert-error" id="errorAlert"></div>
+      <div class="alert-box alert-success" id="successAlert"></div>
+
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" class="form-control" placeholder="e.g. David Adeleke" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" class="form-control" placeholder="david@example.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="role">Account Role</label>
+          <select id="role" class="form-control" style="background:#1E293B; color:#FFF;" required>
+            <option value="Admin">System Administrator</option>
+            <option value="Sound Specialist">Sound Engineer / Specialist</option>
+            <option value="Studio Producer">Studio Music Producer</option>
+            <option value="Academy Student">Academy Student</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password (Min. 6 Characters)</label>
+          <input type="password" id="password" class="form-control" placeholder="••••••••" required minlength="6" autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" class="form-control" placeholder="••••••••" required minlength="6" autocomplete="new-password">
+        </div>
+
+        <button type="submit" class="btn btn-gold signup-btn" id="signupBtn">
+          <span>✨ Create Firebase Account</span>
+        </button>
+      </form>
+
+      <div class="login-link-box">
+        Already have an account? <a href="login.html">Sign In Here</a>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.25rem;">
+        <a href="index.html" style="color: var(--color-text-subtle); font-size: 0.85rem; text-decoration: none;">← Return to Main Website</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const signupForm = document.getElementById('signupForm');
+      const errorAlert = document.getElementById('errorAlert');
+      const successAlert = document.getElementById('successAlert');
+      const signupBtn = document.getElementById('signupBtn');
+
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorAlert.style.display = 'none';
+        successAlert.style.display = 'none';
+        
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const role = document.getElementById('role').value;
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+        // Validation
+        if (password.length < 6) {
+          errorAlert.innerText = 'Password must be at least 6 characters long.';
+          errorAlert.style.display = 'block';
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          errorAlert.innerText = 'Passwords do not match. Please re-enter.';
+          errorAlert.style.display = 'block';
+          return;
+        }
+
+        signupBtn.disabled = true;
+        signupBtn.innerHTML = '<span>Creating Account in Firebase...</span>';
+
+        const result = await window.OvationDB.signUpUser({ fullName, email, password, role });
+
+        if (result.success) {
+          successAlert.innerHTML = `<strong>Account Created Successfully!</strong><br>Welcome, ${result.user.fullName} (${result.user.role}). Redirecting to Portal...`;
+          successAlert.style.display = 'block';
+          signupForm.reset();
+          
+          setTimeout(() => {
+            window.location.href = 'admin.html';
+          }, 1200);
+        } else {
+          errorAlert.innerText = result.error || 'Failed to create account. Please try again.';
+          errorAlert.style.display = 'block';
+          signupBtn.disabled = false;
+          signupBtn.innerHTML = '<span>✨ Create Firebase Account</span>';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

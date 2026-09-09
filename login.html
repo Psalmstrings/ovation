@@ -3,50 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Portal Login — OVATION MUSIC HOUSE</title>
-  
+
+  <title>Sign In — OVATION MUSIC HOUSE</title>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
-  
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
-  
+
   <style>
     .login-wrapper {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem 1rem;
-      background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.08) 0%, var(--color-navy-dark) 70%);
+      padding: 2.5rem 1rem;
+
+      background:
+        radial-gradient(
+          circle at 50% 30%,
+          rgba(212, 175, 55, 0.08) 0%,
+          var(--color-navy-dark) 75%
+        );
+
       position: relative;
       overflow: hidden;
     }
 
     .login-card {
       width: 100%;
-      max-width: 440px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.25);
+      max-width: 450px;
+
+      background: rgba(15, 23, 42, 0.88);
+
+      border: 1px solid rgba(212, 175, 55, 0.3);
       border-radius: var(--radius-lg);
-      padding: 2.5rem 2rem;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.1);
+
+      padding: 2.5rem 2.25rem;
+
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 0 35px rgba(212, 175, 55, 0.12);
+
       backdrop-filter: blur(16px);
+
       position: relative;
       z-index: 2;
     }
 
     .login-logo {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.75rem;
     }
 
     .login-logo .logo-icon {
-      margin: 0 auto 1rem auto;
+      margin: 0 auto 0.75rem auto;
       width: 54px;
       height: 54px;
       font-size: 1.8rem;
@@ -57,7 +77,7 @@
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--color-text-white);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
     }
 
     .login-subtitle {
@@ -72,164 +92,720 @@
 
     .form-group label {
       display: block;
-      font-size: 0.8rem;
+
+      font-size: 0.78rem;
       font-weight: 600;
+
       color: var(--color-gold-primary);
+
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 0.5rem;
+
+      margin-bottom: 0.4rem;
     }
 
     .form-control {
       width: 100%;
+
       padding: 0.85rem 1.1rem;
+
       background: rgba(30, 41, 59, 0.8);
+
       border: 1px solid rgba(212, 175, 55, 0.2);
       border-radius: var(--radius-sm);
+
       color: var(--color-text-white);
+
       font-size: 0.95rem;
+
       transition: all 0.3s ease;
+
+      box-sizing: border-box;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.4);
     }
 
     .form-control:focus {
       outline: none;
+
       border-color: var(--color-gold-primary);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+
+      box-shadow:
+        0 0 12px rgba(212, 175, 55, 0.25);
+
       background: rgba(30, 41, 59, 1);
     }
 
     .login-btn {
       width: 100%;
+
       margin-top: 1rem;
+
       padding: 0.9rem;
+
       font-size: 0.95rem;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       gap: 0.5rem;
+
+      cursor: pointer;
     }
 
-    .error-alert {
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid #EF4444;
-      color: #FCA5A5;
+    .login-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .alert-box {
       padding: 0.75rem 1rem;
+
       border-radius: var(--radius-sm);
+
       font-size: 0.85rem;
+
       margin-bottom: 1.25rem;
+
       display: none;
     }
 
-    .demo-credentials-box {
-      margin-top: 2rem;
-      padding: 1rem;
-      background: rgba(212, 175, 55, 0.05);
-      border: 1px dashed rgba(212, 175, 55, 0.3);
-      border-radius: var(--radius-sm);
-      font-size: 0.8rem;
-      color: var(--color-text-subtle);
-      text-align: center;
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+
+      border: 1px solid #EF4444;
+
+      color: #FCA5A5;
     }
 
-    .demo-credentials-box code {
+    .alert-success {
+      background: rgba(34, 197, 94, 0.15);
+
+      border: 1px solid #22C55E;
+
+      color: #86EFAC;
+    }
+
+    .signup-link-box {
+      margin-top: 1.5rem;
+
+      text-align: center;
+
+      font-size: 0.88rem;
+
+      color: var(--color-text-subtle);
+
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+      padding-top: 1.25rem;
+    }
+
+    .signup-link-box a {
       color: var(--color-gold-primary);
+
       font-weight: 600;
+
+      text-decoration: none;
+
+      margin-left: 0.35rem;
+    }
+
+    .signup-link-box a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
+
 <body>
 
   <div class="login-wrapper">
-    <!-- Soundwave Canvas background element -->
-    <canvas id="heroCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.4;"></canvas>
+
+    <!-- Animated background -->
+    <canvas
+      id="heroCanvas"
+      style="
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.4;
+      "
+    ></canvas>
 
     <div class="login-card reveal-fade-up">
+
+      <!-- Logo -->
       <div class="login-logo">
-        <a href="index.html" class="brand-logo" style="justify-content: center;">
+
+        <a
+          href="index.html"
+          class="brand-logo"
+          style="justify-content: center;"
+        >
           <div class="logo-icon">O</div>
         </a>
-        <h1 class="login-title">OVATION <span class="text-gold">ADMIN</span></h1>
-        <p class="login-subtitle">Sign in to manage customer enquiries & sound requests</p>
+
+        <h1 class="login-title">
+          ADMIN <span class="text-gold">SIGN IN</span>
+        </h1>
+
+        <p class="login-subtitle">
+          Control portal
+        </p>
+
       </div>
 
-      <div class="error-alert" id="errorAlert"></div>
+      <!-- Error message -->
+      <div
+        class="alert-box alert-error"
+        id="errorAlert"
+        role="alert"
+      ></div>
 
-      <form id="adminLoginForm">
+      <!-- Success message -->
+      <div
+        class="alert-box alert-success"
+        id="successAlert"
+        role="status"
+      ></div>
+
+      <!-- Login form -->
+      <form id="adminLoginForm" novalidate>
+
         <div class="form-group">
-          <label for="adminEmail">Email Address</label>
-          <input type="email" id="adminEmail" class="form-control" placeholder="admin@ovationmusic.com" required autocomplete="username">
+
+          <label for="adminEmail">
+            Email Address
+          </label>
+
+          <input
+            type="email"
+            id="adminEmail"
+            class="form-control"
+            placeholder="admin@ovationmusichouse.com"
+            required
+            autocomplete="username"
+          >
+
         </div>
 
         <div class="form-group">
-          <label for="adminPassword">Security Password</label>
-          <input type="password" id="adminPassword" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+
+          <label for="adminPassword">
+            Security Password
+          </label>
+
+          <input
+            type="password"
+            id="adminPassword"
+            class="form-control"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          >
+
         </div>
 
-        <button type="submit" class="btn btn-gold login-btn" id="loginBtn">
-          <span>🔐 Secure Admin Sign In</span>
+        <button
+          type="submit"
+          class="btn btn-gold login-btn"
+          id="loginBtn"
+        >
+          <span>🔐 Sign In</span>
         </button>
+
       </form>
 
-      <div class="demo-credentials-box">
-        <div><strong>Default Admin Passcode:</strong></div>
-        <div style="margin-top: 0.25rem;">Email: <code>admin@ovationmusic.com</code></div>
-        <div>Password: <code>ovation2026</code></div>
-        <button type="button" id="fillDemoBtn" class="btn btn-outline-gold btn-sm" style="margin-top: 0.75rem; padding: 0.25rem 0.75rem; font-size: 0.75rem;">
-          ⚡ Auto-Fill Credentials
-        </button>
+      <!-- Return to website -->
+      <div
+        style="
+          text-align: center;
+          margin-top: 1.25rem;
+        "
+      >
+        <a
+          href="index.html"
+          style="
+            color: var(--color-text-subtle);
+            font-size: 0.85rem;
+            text-decoration: none;
+          "
+        >
+          ← Return to Main Website
+        </a>
       </div>
 
-      <div style="text-align: center; margin-top: 1.5rem;">
-        <a href="index.html" style="color: var(--color-text-subtle); font-size: 0.85rem; text-decoration: none;">← Return to Main Website</a>
-      </div>
     </div>
   </div>
 
+
+  <!-- Firebase / Database -->
   <script src="js/firebase.js"></script>
+
+  <!-- Animations -->
   <script src="js/animations.js"></script>
+
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // If already logged in, redirect to admin
-      if (window.OvationDB.getAdminSession()) {
-        window.location.href = 'admin.html';
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      /*
+       * ============================================================
+       * ELEMENTS
+       * ============================================================
+       */
+
+      const loginForm =
+        document.getElementById('adminLoginForm');
+
+      const emailInput =
+        document.getElementById('adminEmail');
+
+      const passwordInput =
+        document.getElementById('adminPassword');
+
+      const errorAlert =
+        document.getElementById('errorAlert');
+
+      const successAlert =
+        document.getElementById('successAlert');
+
+      const loginBtn =
+        document.getElementById('loginBtn');
+
+
+      /*
+       * ============================================================
+       * BASIC ELEMENT CHECK
+       * ============================================================
+       */
+
+      if (!loginForm || !emailInput || !passwordInput || !loginBtn) {
+
+        console.error(
+          'Login page: Required login elements are missing.'
+        );
+
         return;
       }
 
-      const loginForm = document.getElementById('adminLoginForm');
-      const errorAlert = document.getElementById('errorAlert');
-      const loginBtn = document.getElementById('loginBtn');
-      const fillDemoBtn = document.getElementById('fillDemoBtn');
 
-      fillDemoBtn.addEventListener('click', () => {
-        document.getElementById('adminEmail').value = 'admin@ovationmusic.com';
-        document.getElementById('adminPassword').value = 'ovation2026';
-      });
+      /*
+       * ============================================================
+       * CHECK DATABASE OBJECT
+       * ============================================================
+       */
 
-      loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        errorAlert.style.display = 'none';
-        
-        const email = document.getElementById('adminEmail').value.trim();
-        const password = document.getElementById('adminPassword').value.trim();
+      if (!window.OvationDB) {
 
-        loginBtn.disabled = true;
-        loginBtn.innerHTML = '<span>Authenticating...</span>';
+        showError(
+          'Database system could not be loaded. Please refresh the page or contact the administrator.'
+        );
 
-        const result = await window.OvationDB.loginAdmin(email, password);
+        console.error(
+          'window.OvationDB is undefined. Check js/firebase.js'
+        );
 
-        if (result.success) {
-          loginBtn.innerHTML = '<span>✅ Access Granted! Redirecting...</span>';
-          setTimeout(() => {
-            window.location.href = 'admin.html';
-          }, 600);
-        } else {
-          errorAlert.innerText = result.error || 'Authentication failed. Please check your credentials.';
-          errorAlert.style.display = 'block';
-          loginBtn.disabled = false;
-          loginBtn.innerHTML = '<span>🔐 Secure Admin Sign In</span>';
+        return;
+      }
+
+
+      /*
+       * ============================================================
+       * CHECK EXISTING SESSION
+       * ============================================================
+       */
+
+      try {
+
+        if (
+          typeof window.OvationDB.getAdminSession === 'function'
+        ) {
+
+          const existingSession =
+            window.OvationDB.getAdminSession();
+
+          if (existingSession) {
+
+            window.location.replace('admin.html');
+
+            return;
+          }
         }
-      });
+
+      } catch (error) {
+
+        console.error(
+          'Session check failed:',
+          error
+        );
+      }
+
+
+      /*
+       * ============================================================
+       * SHOW ERROR
+       * ============================================================
+       */
+
+      function showError(message) {
+
+        successAlert.style.display = 'none';
+
+        errorAlert.textContent = message;
+
+        errorAlert.style.display = 'block';
+      }
+
+
+      /*
+       * ============================================================
+       * SHOW SUCCESS
+       * ============================================================
+       */
+
+      function showSuccess(message) {
+
+        errorAlert.style.display = 'none';
+
+        successAlert.innerHTML = message;
+
+        successAlert.style.display = 'block';
+      }
+
+
+      /*
+       * ============================================================
+       * HIDE ALERTS
+       * ============================================================
+       */
+
+      function clearAlerts() {
+
+        errorAlert.style.display = 'none';
+
+        successAlert.style.display = 'none';
+
+        errorAlert.textContent = '';
+
+        successAlert.textContent = '';
+      }
+
+
+      /*
+       * ============================================================
+       * LOGIN
+       * ============================================================
+       */
+
+      loginForm.addEventListener(
+        'submit',
+        async function (event) {
+
+          event.preventDefault();
+
+          clearAlerts();
+
+
+          /*
+           * Get values
+           */
+
+          const email =
+            emailInput.value.trim();
+
+          const password =
+            passwordInput.value;
+
+
+          /*
+           * Validate email
+           */
+
+          if (!email) {
+
+            showError(
+              'Please enter your email address.'
+            );
+
+            emailInput.focus();
+
+            return;
+          }
+
+
+          /*
+           * Validate password
+           */
+
+          if (!password) {
+
+            showError(
+              'Please enter your password.'
+            );
+
+            passwordInput.focus();
+
+            return;
+          }
+
+
+          /*
+           * Disable login button
+           */
+
+          loginBtn.disabled = true;
+
+          loginBtn.innerHTML =
+            '<span>⏳ Authenticating...</span>';
+
+
+          try {
+
+            /*
+             * Make sure loginUser exists
+             */
+
+            if (
+              typeof window.OvationDB.loginUser !== 'function'
+            ) {
+
+              throw new Error(
+                'The login service is not available. Check js/firebase.js.'
+              );
+            }
+
+
+            /*
+             * Authenticate user
+             */
+
+            const result =
+              await window.OvationDB.loginUser(
+                email,
+                password
+              );
+
+
+            /*
+             * Login failed
+             */
+
+            if (
+              !result ||
+              result.success !== true
+            ) {
+
+              showError(
+                result?.error ||
+                'Authentication failed. Please check your email and password.'
+              );
+
+              loginBtn.disabled = false;
+
+              loginBtn.innerHTML =
+                '<span>🔐 Sign In</span>';
+
+              return;
+            }
+
+
+            /*
+             * Get authenticated user
+             */
+
+            const user =
+              result.user || {};
+
+
+            /*
+             * Get safe display information
+             */
+
+            const fullName =
+              user.fullName ||
+              user.name ||
+              'Administrator';
+
+            const role =
+              user.role ||
+              'Admin';
+
+
+            /*
+             * Show success
+             */
+
+            showSuccess(
+              '<strong>Welcome Back, ' +
+              escapeHtml(fullName) +
+              '!</strong><br>' +
+              'Role: ' +
+              escapeHtml(role) +
+              ' | Login successful. Redirecting...'
+            );
+
+
+            /*
+             * Redirect
+             */
+
+            setTimeout(function () {
+
+              window.location.replace(
+                'admin.html'
+              );
+
+            }, 800);
+
+
+          } catch (error) {
+
+            console.error(
+              'Login error:',
+              error
+            );
+
+
+            /*
+             * Convert Firebase errors into
+             * user-friendly messages
+             */
+
+            let message =
+              'Unable to sign in. Please try again.';
+
+
+            if (error && error.message) {
+
+              message =
+                getFriendlyFirebaseError(
+                  error
+                );
+            }
+
+
+            showError(message);
+
+
+            /*
+             * Re-enable button
+             */
+
+            loginBtn.disabled = false;
+
+            loginBtn.innerHTML =
+              '<span>🔐 Sign In</span>';
+          }
+
+        }
+      );
+
+
+      /*
+       * ============================================================
+       * FIREBASE ERROR HANDLER
+       * ============================================================
+       */
+
+      function getFriendlyFirebaseError(error) {
+
+        const message =
+          String(error.message || '')
+            .toLowerCase();
+
+
+        if (
+          message.includes('invalid-credential') ||
+          message.includes('invalid login credentials')
+        ) {
+
+          return 'Invalid email or password.';
+        }
+
+
+        if (
+          message.includes('user-not-found')
+        ) {
+
+          return 'No account was found with this email address.';
+        }
+
+
+        if (
+          message.includes('wrong-password')
+        ) {
+
+          return 'Incorrect password.';
+        }
+
+
+        if (
+          message.includes('invalid-email')
+        ) {
+
+          return 'Please enter a valid email address.';
+        }
+
+
+        if (
+          message.includes('too-many-requests')
+        ) {
+
+          return 'Too many login attempts. Please wait a moment and try again.';
+        }
+
+
+        if (
+          message.includes('network-request-failed')
+        ) {
+
+          return 'Network error. Please check your internet connection.';
+        }
+
+
+        if (
+          message.includes('permission-denied')
+        ) {
+
+          return 'You do not have permission to access the admin portal.';
+        }
+
+
+        /*
+         * Don't expose overly technical errors
+         * to normal users.
+         */
+
+        return error.message ||
+          'Authentication failed. Please check your credentials.';
+      }
+
+
+      /*
+       * ============================================================
+       * HTML ESCAPE
+       * ============================================================
+       */
+
+      function escapeHtml(value) {
+
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
     });
+
   </script>
+
 </body>
 </html>
