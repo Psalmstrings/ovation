@@ -260,7 +260,7 @@ img {
 }
 
 .brand-logo .logo-icon {
-  width: 36px;
+  width: 70px;
   height: 36px;
   background: linear-gradient(135deg, var(--color-gold-primary), var(--color-gold-dark));
   border-radius: var(--radius-sm);
