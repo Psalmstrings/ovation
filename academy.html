@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Music Training & Academy — OVATION MUSIC HOUSE</title>
+  
+  <meta name="description" content="Master vocal performance, keyboard, guitar, drums, sound engineering and music production at Ovation Music Academy Lagos.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">O</div>
+        <div>OVATION <span>MUSIC HOUSE</span></div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="academy.html" class="nav-link active">Academy</a></li>
+          <li><a href="studio.html" class="nav-link">Studio</a></li>
+          <li><a href="equipment.html" class="nav-link">Equipment</a></li>
+          <li><a href="events.html" class="nav-link">Events</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta" style="display:flex; gap:0.75rem;">
+        <!-- <a href="login.html" class="btn btn-outline-gold btn-sm">Admin</a> -->
+        <a href="contact.html?service=Music+Academy" class="btn btn-gold btn-sm">Enroll Now</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggleBtn">☰</button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="academy.html" class="active">Academy</a></li>
+      <li><a href="studio.html">Studio</a></li>
+      <li><a href="equipment.html">Equipment</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" style="color:var(--color-gold-primary);">🔐 Admin Portal</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <section class="section-padding" style="padding-top: 10rem; background: linear-gradient(180deg, rgba(15,23,42,0.85), rgba(15,23,42,0.98)), url('images/grand_piano.jpg') center/cover no-repeat; text-align: center;">
+    <div class="container" style="max-width: 850px;">
+      <div class="eyebrow reveal-fade-up">SERVICE 01 — MUSIC ACADEMY</div>
+      <h1 class="section-title reveal-fade-up delay-1" style="font-size: clamp(2.5rem, 5vw, 3.8rem);">Professional <span class="text-gradient-gold">Music Academy</span></h1>
+      <p class="section-subtitle reveal-fade-up delay-2" style="margin: 0 auto;">
+        Vocal mastery, instrument proficiency (keyboards, guitars, drums), sound engineering principles and music production masterclasses led by industry professionals.
+      </p>
+    </div>
+  </section>
+
+  <!-- ACADEMY COURSES GRID -->
+  <section class="section-padding" style="background: var(--color-navy-base);">
+    <div class="container">
+      <div style="text-align: center; max-width: 700px; margin: 0 auto 3.5rem auto;">
+        <div class="eyebrow">TRAINING PROGRAMS</div>
+        <h2 class="section-title">Master <span class="text-gold">Your Craft</span></h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal-fade-up" style="padding:0; overflow:hidden;">
+          <div class="img-zoom-box" style="height:200px;">
+            <img src="images/grand_piano.jpg" alt="Keyboard & Piano Academy">
+          </div>
+          <div style="padding:1.5rem;">
+            <h3 class="service-title">Keyboard & Piano Mastery</h3>
+            <p style="color:var(--color-text-subtle); margin-bottom:1rem;">Sight reading, gospel harmony, chord progression mastery, improvisation, and organ performance.</p>
+            <a href="contact.html?service=Keyboard+Academy" class="btn btn-gold btn-sm" style="width:100%;">Enroll in Keyboards</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal-fade-up delay-1" style="padding:0; overflow:hidden;">
+          <div class="img-zoom-box" style="height:200px;">
+            <img src="images/electric_guitar.jpg" alt="Guitar & Bass Academy">
+          </div>
+          <div style="padding:1.5rem;">
+            <h3 class="service-title">Guitar & Bass Mastery</h3>
+            <p style="color:var(--color-text-subtle); margin-bottom:1rem;">Lead acoustic, electric guitar riffing, bass groove theory, slap techniques, and stage performance.</p>
+            <a href="contact.html?service=Guitar+Academy" class="btn btn-gold btn-sm" style="width:100%;">Enroll in Guitars</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal-fade-up delay-2" style="padding:0; overflow:hidden;">
+          <div class="img-zoom-box" style="height:200px;">
+            <img src="images/drum_set.jpg" alt="Drums & Percussion Academy">
+          </div>
+          <div style="padding:1.5rem;">
+            <h3 class="service-title">Drums & Rhythm Section</h3>
+            <p style="color:var(--color-text-subtle); margin-bottom:1rem;">Rhythmic independence, tempo control, pocket playing, fill design, and electronic drum mapping.</p>
+            <a href="contact.html?service=Drum+Academy" class="btn btn-gold btn-sm" style="width:100%;">Enroll in Drums</a>
+          </div>
+        </div>
+
+        <div class="service-card reveal-fade-up delay-3" style="padding:0; overflow:hidden;">
+          <div class="img-zoom-box" style="height:200px;">
+            <img src="images/sound_console.jpg" alt="Sound Engineering Academy">
+          </div>
+          <div style="padding:1.5rem;">
+            <h3 class="service-title">Sound Engineering & Mixing</h3>
+            <p style="color:var(--color-text-subtle); margin-bottom:1rem;">Digital console workflow, live mixing, EQ/compression balance, microphone placement, and mastering.</p>
+            <a href="contact.html?service=Sound+Engineering+Academy" class="btn btn-gold btn-sm" style="width:100%;">Enroll in Sound Engineering</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="logo-icon">O</div>
+            <div>OVATION <span>MUSIC HOUSE</span></div>
+          </a>
+          <p>Your Premier Global Music & Sound Solutions Hub.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="academy.html">Academy</a></li>
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="equipment.html">Equipment</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Courses</h4>
+          <ul class="footer-links">
+            <li><a href="academy.html">Piano & Keyboard</a></li>
+            <li><a href="academy.html">Electric & Bass Guitar</a></li>
+            <li><a href="academy.html">Drums & Percussion</a></li>
+            <li><a href="academy.html">Sound Engineering</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Location</h4>
+          <p style="font-size:0.85rem; color:var(--color-text-muted);">
+            Km38, Lekki-Epe Expressway, Opposite Union Bank Awoyaya Bus Stop, Ibeju-Lekki, Lagos.<br><br>
+            Phone: +234 800 123 4567
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Ovation Music House. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/firebase.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

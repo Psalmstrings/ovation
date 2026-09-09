@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OVATION MUSIC HOUSE — Premier Global Music & Sound Solutions Hub | Lagos</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Ovation Music House is Lagos Nigeria's premier music & sound solutions hub. Professional music academy training, recording studio, musical instrument sales & importation, and large-scale event sound engineering.">
+  <meta name="keywords" content="Music Academy Lagos, Recording Studio Lagos, Sound Engineering Nigeria, Musical Instruments Importation Lekki, Event Sound System Lagos, Ovation Music House">
+  <meta property="og:title" content="OVATION MUSIC HOUSE — Premier Music & Sound Solutions Hub">
+  <meta property="og:description" content="Empowering Talent. Equipping Stages. Elevating Sound. Professional Music Academy, Recording Studio, Instrument Sales & Event Sound Engineering in Lagos.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Montserrat & Inter & Cinzel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ===== STICKY HEADER ===== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">O</div>
+        <div>OVATION <span>MUSIC HOUSE</span></div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="academy.html" class="nav-link">Academy</a></li>
+          <li><a href="studio.html" class="nav-link">Studio</a></li>
+          <li><a href="equipment.html" class="nav-link">Equipment</a></li>
+          <li><a href="events.html" class="nav-link">Events</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta" style="display: flex; gap: 0.75rem; align-items: center;">
+        <!-- <a href="login.html" class="btn btn-outline-gold btn-sm">Admin Portal</a> -->
+        <a href="#contact" class="btn btn-gold btn-sm">Book Consultation</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggleBtn" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <!-- MOBILE DRAWER NAV -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="academy.html">Academy</a></li>
+      <li><a href="studio.html">Studio</a></li>
+      <li><a href="equipment.html">Equipment</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html" style="color: var(--color-gold-primary);">🔐 Admin Portal</a></li>
+    </ul>
+    <div style="margin-top: 2rem;">
+      <a href="#contact" class="btn btn-gold" style="width: 100%;">Book a Consultation</a>
+    </div>
+  </div>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero-section" id="hero" style="background: linear-gradient(180deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.95) 100%), url('images/hero_studio.jpg') center/cover no-repeat;">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="eyebrow reveal-fade-up">OVATION MUSIC HOUSE</div>
+      
+      <h1 class="hero-title reveal-fade-up delay-1">
+        Empowering Talent.<br>
+        <span class="text-gradient-gold">Equipping Stages.</span>
+        Elevating Sound.
+      </h1>
+
+      <div class="hero-subhead reveal-fade-up delay-2">Your Premier Global Music & Sound Solutions Hub</div>
+
+      <p class="hero-description reveal-fade-up delay-3">
+        From professional music training and world-class recording to musical equipment supply and large-scale event sound deployment, we provide complete music and sound solutions built around excellence.
+      </p>
+
+      <div class="hero-actions reveal-fade-up delay-4">
+        <a href="#instruments-gallery" class="btn btn-gold">Explore Musical Gear 🎹</a>
+        <a href="#contact" class="btn btn-outline-gold">Book a Consultation</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="mouse-icon">
+        <div class="mouse-wheel"></div>
+      </div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ===== INTRODUCTION / ABOUT SECTION ===== -->
+  <section class="about-section section-padding" id="about-intro">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal-slide-left">
+          <div class="eyebrow">ABOUT OVATION</div>
+          <h2 class="section-title">Where Music Meets <span class="text-gold">Excellence</span></h2>
+          <p class="section-subtitle" style="margin-bottom: 1.5rem;">
+            Ovation Music House brings together music education, professional recording, musical instrument supply and advanced sound engineering under one roof.
+          </p>
+          <p style="color: var(--color-text-subtle); line-height: 1.8; margin-bottom: 2rem;">
+            Our mission is to equip musicians, institutions, churches, businesses and event organizers with the skills, equipment and technical expertise required to create exceptional musical experiences across Nigeria and globally.
+          </p>
+          <a href="about.html" class="service-link">Read Full Brand Story →</a>
+        </div>
+
+        <div class="about-visual reveal-slide-right">
+          <div class="img-zoom-box" style="height: 380px; border: 1px solid var(--color-gold-primary); box-shadow: var(--shadow-card);">
+            <img src="images/hero_studio.jpg" alt="Ovation Music Recording Studio Control Room">
+            <div style="position: absolute; bottom: 0; inset-x: 0; background: linear-gradient(to top, rgba(15,23,42,0.95), transparent); padding: 1.5rem; text-align: center;">
+              <div class="text-gradient-gold" style="font-family: var(--font-accent); font-size: 1.6rem; font-weight: 900;">OVATION STUDIO & ACADEMY</div>
+              <p style="font-size: 0.8rem; color: var(--color-text-white); margin-top: 0.25rem;">Acoustically Calibrated Sound Environments</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANIMATED STATISTICS -->
+      <div class="stats-grid reveal-fade-up" style="margin-top: 4rem;">
+        <div class="stat-card">
+          <div class="stat-number" data-target="4" data-suffix="+">0</div>
+          <div class="stat-label">Core Solutions Ecosystem</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number" data-target="100" data-suffix="%">0</div>
+          <div class="stat-label">Commitment to Excellence</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number" data-target="100" data-suffix=" (Global)">Global</div>
+          <div class="stat-label">Equipment Standards</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number" data-target="1" data-suffix=" Stop">End-to-End</div>
+          <div class="stat-label">Music & Sound Solutions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MUSICAL INSTRUMENTS SHOWCASE GALLERY ===== -->
+  <section class="section-padding" id="instruments-gallery" style="background: var(--color-navy-dark);">
+    <div class="container">
+      <div style="text-align: center; max-width: 750px; margin: 0 auto 3.5rem auto;">
+        <div class="eyebrow">PREMIUM GEAR CATALOG</div>
+        <h2 class="section-title">World-Class <span class="text-gold">Musical Instruments</span> & Gear</h2>
+        <p style="color: var(--color-text-subtle);">Direct authorized importer of genuine stage keyboards, electric guitars, drum shell packs, digital consoles, and stadium audio arrays.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <!-- ITEM 1: KEYBOARDS -->
+        <div class="service-card reveal-fade-up" style="padding: 0; overflow: hidden;">
+          <div class="img-zoom-box" style="height: 220px;">
+            <img src="images/grand_piano.jpg" alt="Stage Keyboards and Grand Pianos">
+          </div>
+          <div style="padding: 1.5rem;">
+            <div class="service-num">CATEGORY 01</div>
+            <h3 class="service-title" style="margin-bottom: 0.5rem;">Stage Keyboards & Grand Pianos</h3>
+            <p style="color: var(--color-text-subtle); font-size: 0.9rem; margin-bottom: 1rem;">Yamaha Montage, Nord Stage, Korg Kronos & weighted hammer action acoustic grand pianos.</p>
+            <a href="equipment.html" class="service-link">View Keyboard Catalog →</a>
+          </div>
+        </div>
+
+        <!-- ITEM 2: GUITARS -->
+        <div class="service-card reveal-fade-up delay-1" style="padding: 0; overflow: hidden;">
+          <div class="img-zoom-box" style="height: 220px;">
+            <img src="images/electric_guitar.jpg" alt="Electric Guitars and Bass Amplifiers">
+          </div>
+          <div style="padding: 1.5rem;">
+            <div class="service-num">CATEGORY 02</div>
+            <h3 class="service-title" style="margin-bottom: 0.5rem;">Electric & Bass Guitars</h3>
+            <p style="color: var(--color-text-subtle); font-size: 0.9rem; margin-bottom: 1rem;">Fender Stratocasters, Gibson Les Pauls, Ibanez Basses & vintage tube amplifiers.</p>
+            <a href="equipment.html" class="service-link">View Guitar Catalog →</a>
+          </div>
+        </div>
+
+        <!-- ITEM 3: DRUMS -->
+        <div class="service-card reveal-fade-up delay-2" style="padding: 0; overflow: hidden;">
+          <div class="img-zoom-box" style="height: 220px;">
+            <img src="images/drum_set.jpg" alt="Pro Acoustic Drum Kit and Cymbals">
+          </div>
+          <div style="padding: 1.5rem;">
+            <div class="service-num">CATEGORY 03</div>
+            <h3 class="service-title" style="margin-bottom: 0.5rem;">Pro Drum Shell Packs & Cymbals</h3>
+            <p style="color: var(--color-text-subtle); font-size: 0.9rem; margin-bottom: 1rem;">Tama Starclassic, Pearl Reference, Roland V-Drums and Zildjian hand-hammered cymbals.</p>
+            <a href="equipment.html" class="service-link">View Drum Catalog →</a>
+          </div>
+        </div>
+
+        <!-- ITEM 4: CONSOLES -->
+        <div class="service-card reveal-fade-up delay-3" style="padding: 0; overflow: hidden;">
+          <div class="img-zoom-box" style="height: 220px;">
+            <img src="images/sound_console.jpg" alt="Digital Mixing Consoles and Line Arrays">
+          </div>
+          <div style="padding: 1.5rem;">
+            <div class="service-num">CATEGORY 04</div>
+            <h3 class="service-title" style="margin-bottom: 0.5rem;">Digital Consoles & Line Arrays</h3>
+            <p style="color: var(--color-text-subtle); font-size: 0.9rem; margin-bottom: 1rem;">Allen & Heath, Midas mixers, Shure wireless systems, and RCF stadium sound line arrays.</p>
+            <a href="equipment.html" class="service-link">View Sound Equipment →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CORE SERVICES — 4 GRID ===== -->
+  <section class="services-section section-padding" id="services">
+    <div class="container">
+      <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem auto;">
+        <div class="eyebrow">OUR CORE SPECTRUM</div>
+        <h2 class="section-title">Comprehensive <span class="text-gold">Music & Sound</span> Solutions</h2>
+        <p style="color: var(--color-text-subtle);">Tailored services delivering unmatched standard across academy training, studio production, gear supply, and concert audio deployment.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- SERVICE 01 -->
+        <div class="service-card reveal-fade-up">
+          <div>
+            <!-- <div class="service-num">SERVICE 01</div> -->
+            <div class="service-icon">🎹</div>
+            <h3 class="service-title">Professional Music Training & Academy</h3>
+            <ul class="service-list">
+              <li><strong>Vocal Performance & Mastery:</strong> Coaching for soloists, worship teams, ensembles and performers.</li>
+              <li><strong>Instrument Proficiency:</strong> Keyboards, guitars, drums and orchestral instruments.</li>
+              <li><strong>Sound Engineering & Production:</strong> Hands-on mixing, mastering, and studio workflows.</li>
+              <li><strong>Executive Masterclasses:</strong> Workshops led by experienced producers and sound engineers.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="academy.html" class="service-link">Explore the Academy →</a>
+          </div>
+        </div>
+
+        <!-- SERVICE 02 -->
+        <div class="service-card reveal-fade-up delay-1">
+          <div>
+            <!-- <div class="service-num">SERVICE 02</div> -->
+            <div class="service-icon">🎧</div>
+            <h3 class="service-title">State-of-the-Art Recording Studio</h3>
+            <ul class="service-list">
+              <li>Multi-track tracking, mixing and audio mastering.</li>
+              <li>Acoustically treated control rooms and live recording rooms.</li>
+              <li>Commercial voiceover, film scoring and professional music production.</li>
+              <li>Analog warmth combined with cutting-edge digital workstations.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="studio.html" class="service-link">Explore the Studio →</a>
+          </div>
+        </div>
+
+        <!-- SERVICE 03 -->
+        <div class="service-card reveal-fade-up delay-2">
+          <div>
+            <!-- <div class="service-num">SERVICE 03</div> -->
+            <div class="service-icon">🎸</div>
+            <h3 class="service-title">Global Instrument Sales & Importation</h3>
+            <ul class="service-list">
+              <li>Authorized importer of high-grade acoustic and electronic musical instruments.</li>
+              <li>Direct supply for institutions, studios, churches and individual musicians.</li>
+              <li>Complete warranty support, professional setup and maintenance services.</li>
+              <li>Keyboards, guitars, drums, studio monitors & high-end microphones.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="equipment.html" class="service-link">Explore Equipment →</a>
+          </div>
+        </div>
+
+        <!-- SERVICE 04 -->
+        <div class="service-card reveal-fade-up delay-3">
+          <div>
+            <!-- <div class="service-num">SERVICE 04</div> -->
+            <div class="service-icon">🔊</div>
+            <h3 class="service-title">Sound Systems & Large-Event Deployment</h3>
+            <ul class="service-list">
+              <li>Turnkey audio engineering for crusades, concerts, corporate galas and outdoor gatherings.</li>
+              <li>Supply, installation and tuning of line-array systems and stadium acoustics.</li>
+              <li>On-site certified technical support and sound system maintenance contracts.</li>
+              <li>Acoustic calibration for places of worship and event centers.</li>
+            </ul>
+          </div>
+          <div>
+            <a href="events.html" class="service-link">Explore Event Solutions →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AUDIO WAVEFORM & INTERACTIVE SYNTH PIANO ===== -->
+  <section class="sound-visualizer-section section-padding">
+    <div class="container">
+      <div class="eyebrow">INTERACTIVE ACOUSTIC SPECTRUM</div>
+      <h2 class="section-title">Built Around Sound. <span class="text-gold">Driven by Excellence.</span></h2>
+      <p style="color: var(--color-text-subtle); max-width: 650px; margin: 0 auto 1.5rem auto;">Visualizing frequency precision and dynamic clarity. Click the interactive synthesizer keyboard below to test sound notes!</p>
+
+      <!-- INTERACTIVE PLAYABLE PIANO SYNTH WIDGET -->
+      <div id="interactivePiano" class="piano-keyboard-container"></div>
+      <div style="text-align: center; font-size: 0.8rem; color: var(--color-gold-primary); margin-bottom: 2rem;">
+        🎹 Click or Tap the Piano Keys Above to Play Real Synthesizer Audio Notes!
+      </div>
+
+      <div class="waveform-container">
+        <canvas id="soundwaveCanvas"></canvas>
+      </div>
+
+      <div class="sound-controls">
+        <button class="btn btn-outline-gold btn-sm" id="toggleSoundwaveBtn">
+          <span>⏸</span> Pause Waveform Animation
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact-section section-padding" id="contact">
+    <div class="container">
+      <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem;">
+        <div>
+          <div class="eyebrow">GET IN TOUCH</div>
+          <h2 class="section-title">Start Your <span class="text-gold">Sound Journey</span></h2>
+          <p style="color: var(--color-text-subtle); margin-bottom: 2rem; line-height: 1.7;">
+            Whether you require music academy enrollment, recording studio booking, instrument purchasing or turnkey event sound engineering, our team is ready to assist you.
+          </p>
+
+          <div style="margin-bottom: 1.5rem;">
+            <div style="font-weight: 700; color: var(--color-gold-primary); font-size: 0.9rem; text-transform: uppercase;">Hub Location</div>
+            <p style="color: var(--color-text-subtle); font-size: 0.95rem;">Km38, Lekki-Epe Expressway, Opposite Union Bank Awoyaya Bus Stop, Ibeju-Lekki, Lagos, Nigeria.</p>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <div style="font-weight: 700; color: var(--color-gold-primary); font-size: 0.9rem; text-transform: uppercase;">Direct Line / WhatsApp</div>
+            <p style="color: var(--color-text-subtle); font-size: 0.95rem;">+234 811 000 0611 | +234 812 241 2970</p>
+          </div>
+
+          <div>
+            <div style="font-weight: 700; color: var(--color-gold-primary); font-size: 0.9rem; text-transform: uppercase;">Email Enquiry</div>
+            <p style="color: var(--color-text-subtle); font-size: 0.95rem;">ovationmusichouse@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-card" style="background: var(--color-navy-card); border: var(--glass-border); border-radius: var(--radius-lg); padding: 2.5rem;">
+          <h3 style="font-family: var(--font-heading); color: var(--color-gold-primary); margin-bottom: 1.5rem; font-size: 1.4rem;">Submit Customer Enquiry</h3>
+          
+          <form id="ovationContactForm">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <input type="text" id="fullName" class="form-control" placeholder="Your Full Name *" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <input type="email" id="email" class="form-control" placeholder="Email Address *" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <input type="tel" id="phone" class="form-control" placeholder="Phone / WhatsApp Number *" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <select id="serviceRequired" class="form-control" required style="color: #FFF; background: #1E293B;">
+                <option value="" disabled selected>Select Service Required *</option>
+                <option value="Music Academy">Music Academy Enrollment</option>
+                <option value="Recording Studio">Recording Studio Booking</option>
+                <option value="Instrument Purchase">Instrument Sales & Importation</option>
+                <option value="Event Sound">Large Event Sound System</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <input type="date" id="preferredDate" class="form-control" style="color: #FFF; background: #1E293B;">
+            </div>
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <textarea id="message" class="form-control" rows="4" placeholder="Brief details about your project or enquiry *" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold" style="width: 100%;">
+              <span>Send Enquiry to Firebase</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="logo-icon">O</div>
+            <div>OVATION <span>MUSIC HOUSE</span></div>
+          </a>
+          <p>Your Premier Global Music & Sound Solutions Hub.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="academy.html">Academy</a></li>
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="equipment.html">Equipment</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" style="color:var(--color-gold-primary);">Admin Portal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Instruments</h4>
+          <ul class="footer-links">
+            <li><a href="equipment.html">Stage Keyboards</a></li>
+            <li><a href="equipment.html">Electric & Bass Guitars</a></li>
+            <li><a href="equipment.html">Drum Shell Packs</a></li>
+            <li><a href="equipment.html">Stadium Line Arrays</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Location</h4>
+          <p style="font-size:0.85rem; color:var(--color-text-muted);">
+            Km38, Lekki-Epe Expressway, Opposite Union Bank Awoyaya Bus Stop, Ibeju-Lekki, Lagos.<br><br>
+            Phone: +234 800 123 4567
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Ovation Music House. All Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase & Scripts -->
+  <script src="js/firebase.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/* ==========================================================================
+   OVATION MUSIC HOUSE — RESPONSIVE MEDIA QUERIES & MOBILE DESIGN
+   ========================================================================== */
+
+/* Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* Laptop & Desktop Adjustments (Max 1100px) */
+@media (max-width: 1100px) {
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 2rem;
+  }
+
+  .why-grid, .timeline-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .instrument-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet & Mobile (Max 850px) */
+@media (max-width: 850px) {
+  .nav-menu, .header-cta {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-grid, .location-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .instrument-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .contact-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .whatsapp-box {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .piano-keyboard-container {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
+/* Mobile Devices (Max 580px) */
+@media (max-width: 580px) {
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .section-padding {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .why-grid, .timeline-flow, .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .piano-keyboard-container {
+    transform: scale(0.7);
+    margin: 1rem auto;
+  }
+
+  /* Admin table mobile cards */
+  .admin-table-card table,
+  .admin-table-card thead,
+  .admin-table-card tbody,
+  .admin-table-card th,
+  .admin-table-card td,
+  .admin-table-card tr {
+    display: block;
+  }
+
+  .admin-table-card thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .admin-table-card tr {
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(15, 23, 42, 0.6);
+  }
+
+  .admin-table-card td {
+    border: none;
+    position: relative;
+    padding-left: 45%;
+    text-align: right;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .admin-table-card td:last-child {
+    border-bottom: none;
+  }
+
+  .admin-table-card td::before {
+    position: absolute;
+    left: 0.75rem;
+    width: 40%;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 700;
+    color: var(--color-gold-primary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .admin-table-card td:nth-of-type(1)::before { content: "Date"; }
+  .admin-table-card td:nth-of-type(2)::before { content: "Client"; }
+  .admin-table-card td:nth-of-type(3)::before { content: "Contact"; }
+  .admin-table-card td:nth-of-type(4)::before { content: "Service"; }
+  .admin-table-card td:nth-of-type(5)::before { content: "Message"; }
+  .admin-table-card td:nth-of-type(6)::before { content: "Status"; }
+  .admin-table-card td:nth-of-type(7)::before { content: "Actions"; }
+}
+
+/* Ultra Small Mobile (Max 360px) */
+@media (max-width: 360px) {
+  .piano-keyboard-container {
+    transform: scale(0.55);
+  }
+  .brand-logo {
+    font-size: 0.9rem;
+  }
+}
