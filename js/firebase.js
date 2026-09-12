@@ -325,6 +325,113 @@ class OvationDatabase {
     const session = localStorage.getItem('ovation_admin_session');
     return session ? JSON.parse(session) : null;
   }
+
+  /* ===== BOOKING METHODS ===== */
+
+  /**
+   * Save a new music class booking to Firestore 'bookings' collection
+   */
+  async saveBooking(bookingData) {
+    await this.initPromise;
+    const payload = {
+      ...bookingData,
+      createdAt: new Date().toISOString(),
+      status: 'Pending'
+    };
+
+    if (!this.useLocalStorage && this.db) {
+      try {
+        const colRef = this.fs.collection(this.db, 'bookings');
+        const docRef = await this.fs.addDoc(colRef, payload);
+        this.saveBookingToLocalBackup(payload, docRef.id);
+        return { success: true, id: docRef.id, mode: 'firestore' };
+      } catch (error) {
+        console.error('Firestore Booking Save Error:', error);
+        throw error;
+      }
+    }
+
+    // LocalStorage fallback
+    const id = 'LOCAL_BKG_' + Date.now();
+    payload.id = id;
+    this.saveBookingToLocalBackup(payload, id);
+    return { success: true, id: id, mode: 'local' };
+  }
+
+  saveBookingToLocalBackup(payload, id) {
+    const existing = JSON.parse(localStorage.getItem('ovation_bookings') || '[]');
+    const item = { ...payload, id };
+    existing.unshift(item);
+    localStorage.setItem('ovation_bookings', JSON.stringify(existing));
+  }
+
+  /**
+   * Fetch all bookings (for admin dashboard)
+   */
+  async getBookings() {
+    await this.initPromise;
+    if (!this.useLocalStorage && this.db) {
+      try {
+        const q = this.fs.query(
+          this.fs.collection(this.db, 'bookings'),
+          this.fs.orderBy('createdAt', 'desc')
+        );
+        const snapshot = await this.fs.getDocs(q);
+        const data = [];
+        snapshot.forEach(docSnap => data.push({ id: docSnap.id, ...docSnap.data() }));
+        if (data.length > 0) return data;
+      } catch (error) {
+        console.warn('Firestore Bookings Fetch Notice, reading local cache:', error);
+      }
+    }
+    return JSON.parse(localStorage.getItem('ovation_bookings') || '[]');
+  }
+
+  /**
+   * Subscribe to real-time bookings stream (for admin dashboard)
+   */
+  async subscribeBookings(callback) {
+    await this.initPromise;
+    if (!this.useLocalStorage && this.db) {
+      try {
+        const q = this.fs.query(
+          this.fs.collection(this.db, 'bookings'),
+          this.fs.orderBy('createdAt', 'desc')
+        );
+        return this.fs.onSnapshot(q, (snapshot) => {
+          const data = [];
+          snapshot.forEach(docSnap => data.push({ id: docSnap.id, ...docSnap.data() }));
+          callback(data);
+        });
+      } catch (err) {
+        console.warn('Bookings snapshot subscription fallback:', err);
+      }
+    }
+    callback(await this.getBookings());
+    return () => {};
+  }
+
+  /**
+   * Update booking status (Pending -> Confirmed -> Cancelled -> Completed)
+   */
+  async updateBookingStatus(id, newStatus) {
+    await this.initPromise;
+    if (!this.useLocalStorage && this.db && !id.startsWith('LOCAL_')) {
+      try {
+        const docRef = this.fs.doc(this.db, 'bookings', id);
+        await this.fs.updateDoc(docRef, { status: newStatus });
+      } catch (err) {
+        console.error('Firestore booking status update error:', err);
+      }
+    }
+    const existing = JSON.parse(localStorage.getItem('ovation_bookings') || '[]');
+    const index = existing.findIndex(item => item.id === id);
+    if (index !== -1) {
+      existing[index].status = newStatus;
+      localStorage.setItem('ovation_bookings', JSON.stringify(existing));
+    }
+    return { success: true };
+  }
 }
 
 // Global Singleton Instance

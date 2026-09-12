@@ -1,220 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — OVATION MUSIC HOUSE</title>
-  
+  <title>Admin Dashboard - OVATION MUSIC HOUSE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="./images/78a0ec08-c0f0-478e-bd26-869b490f84d8.jpeg" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  
+  <link rel="stylesheet" href="css/booking.css">
   <style>
-    .admin-container {
-      padding-top: 7.5rem;
-      padding-bottom: 5rem;
-      min-height: 90vh;
-    }
-    
-    .admin-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    
-    .admin-user-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      padding: 0.4rem 0.9rem;
-      border-radius: var(--radius-full);
-      font-size: 0.8rem;
-      color: var(--color-gold-primary);
-    }
-
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
-    }
-    
-    .admin-stat-card {
-      background: var(--color-navy-card);
-      border: var(--glass-border);
-      border-radius: var(--radius-md);
-      padding: 1.5rem 1.25rem;
-      text-align: center;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .admin-stat-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--color-gold-primary);
-    }
-
-    .toolbar-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      background: rgba(30, 41, 59, 0.6);
-      padding: 1rem 1.25rem;
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .search-input-box {
-      position: relative;
-      flex: 1;
-      min-width: 240px;
-    }
-
-    .search-input-box input {
-      width: 100%;
-      padding: 0.6rem 1rem 0.6rem 2.5rem;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: var(--radius-sm);
-      color: #fff;
-      font-size: 0.9rem;
-    }
-
-    .search-input-box .search-icon {
-      position: absolute;
-      left: 0.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--color-gold-primary);
-      font-size: 0.9rem;
-    }
-
-    .admin-table-card {
-      background: var(--color-navy-card);
-      border: var(--glass-border);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      overflow-x: auto;
-      box-shadow: var(--shadow-card);
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.9rem;
-    }
-    
-    th {
-      font-family: var(--font-heading);
-      color: var(--color-gold-primary);
-      padding: 1rem;
-      border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      letter-spacing: 1px;
-    }
-    
-    td {
-      padding: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--color-text-subtle);
-      vertical-align: middle;
-    }
-
-    tr:hover td {
-      background: rgba(212, 175, 55, 0.04);
-      color: var(--color-text-white);
-    }
-    
-    .status-badge {
-      padding: 0.25rem 0.6rem;
-      border-radius: var(--radius-full);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      display: inline-block;
-    }
-
-    .status-pending { background: rgba(212, 175, 55, 0.2); color: var(--color-gold-primary); border: 1px solid var(--color-gold-primary); }
-    .status-contacted { background: rgba(59, 130, 246, 0.2); color: #60A5FA; border: 1px solid #60A5FA; }
-    .status-completed { background: rgba(34, 197, 94, 0.2); color: #4ADE80; border: 1px solid #4ADE80; }
-
-    .action-btn-group {
-      display: flex;
-      gap: 0.4rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    /* Modal styles */
-    .detail-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 1rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .detail-modal.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .detail-modal-box {
-      background: var(--color-navy-card);
-      border: 1px solid var(--color-gold-primary);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      width: 100%;
-      max-width: 580px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-    }
-
-    @media (max-width: 768px) {
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .admin-header { flex-direction: column; align-items: flex-start; }
-    }
+    .admin-container{padding-top:7.5rem;padding-bottom:5rem;min-height:90vh}
+    .admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+    .admin-user-pill{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);padding:0.4rem 0.9rem;border-radius:var(--radius-full);font-size:0.8rem;color:var(--color-gold-primary)}
+    .stats-bar{display:grid;gap:1.25rem;margin-bottom:2.5rem}
+    .admin-stat-card{background:var(--color-navy-card);border:var(--glass-border);border-radius:var(--radius-md);padding:1.5rem 1.25rem;text-align:center;transition:transform 0.3s ease,border-color 0.3s ease}
+    .admin-stat-card:hover{transform:translateY(-4px);border-color:var(--color-gold-primary)}
+    .toolbar-bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;background:rgba(30,41,59,0.6);padding:1rem 1.25rem;border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.08)}
+    .search-input-box{position:relative;flex:1;min-width:240px}
+    .search-input-box input{width:100%;padding:0.6rem 1rem 0.6rem 2.5rem;background:rgba(15,23,42,0.8);border:1px solid rgba(212,175,55,0.25);border-radius:var(--radius-sm);color:#fff;font-size:0.9rem}
+    .search-input-box .search-icon{position:absolute;left:0.8rem;top:50%;transform:translateY(-50%);color:var(--color-gold-primary);font-size:0.9rem}
+    .admin-table-card{background:var(--color-navy-card);border:var(--glass-border);border-radius:var(--radius-md);padding:1.5rem;overflow-x:auto;box-shadow:var(--shadow-card)}
+    table{width:100%;border-collapse:collapse;text-align:left;font-size:0.9rem}
+    th{font-family:var(--font-heading);color:var(--color-gold-primary);padding:1rem;border-bottom:2px solid rgba(212,175,55,0.3);text-transform:uppercase;font-size:0.78rem;letter-spacing:1px}
+    td{padding:1rem;border-bottom:1px solid rgba(255,255,255,0.08);color:var(--color-text-subtle);vertical-align:middle}
+    tr:hover td{background:rgba(212,175,55,0.04);color:var(--color-text-white)}
+    .status-badge{padding:0.25rem 0.6rem;border-radius:var(--radius-full);font-size:0.72rem;font-weight:700;text-transform:uppercase;display:inline-block}
+    .status-pending,.status-Pending{background:rgba(212,175,55,0.2);color:var(--color-gold-primary);border:1px solid var(--color-gold-primary)}
+    .status-contacted{background:rgba(59,130,246,0.2);color:#60A5FA;border:1px solid #60A5FA}
+    .status-Confirmed{background:rgba(59,130,246,0.2);color:#60A5FA;border:1px solid #60A5FA}
+    .status-completed,.status-Completed{background:rgba(34,197,94,0.2);color:#4ADE80;border:1px solid #4ADE80}
+    .status-Cancelled{background:rgba(248,113,113,0.2);color:#F87171;border:1px solid #F87171}
+    .action-btn-group{display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap}
+    .detail-modal{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:9999;padding:1rem;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+    .detail-modal.active{opacity:1;pointer-events:auto}
+    .detail-modal-box{background:var(--color-navy-card);border:1px solid var(--color-gold-primary);border-radius:var(--radius-lg);padding:2rem;width:100%;max-width:580px;box-shadow:0 25px 50px rgba(0,0,0,0.8);max-height:85vh;overflow-y:auto}
+    @media(max-width:1100px){.stats-bar{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:768px){.stats-bar{grid-template-columns:repeat(2,1fr)}.admin-header{flex-direction:column;align-items:flex-start}}
   </style>
 </head>
 <body>
-
-  <!-- HEADER -->
   <header class="site-header scrolled">
     <div class="container header-container">
       <a href="index.html" class="brand-logo">
         <div class="logo-icon"><img src="./images/78a0ec08-c0f0-478e-bd26-869b490f84d8.jpeg" alt=""></div>
-        <!-- <div>OVATION <span>MUSIC HOUSE</span></div> -->
       </a>
-
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="index.html" class="nav-link">Back to Website</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-cta" style="display: flex; gap: 0.75rem; align-items: center;">
+      <nav><ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Back to Website</a></li>
+        <li><a href="booking.html" class="nav-link" style="color:var(--color-gold-primary);">Book a Class</a></li>
+      </ul></nav>
+      <div class="header-cta" style="display:flex;gap:0.75rem;align-items:center;">
         <div class="admin-user-pill" id="adminUserPill">
-          <span>🟢</span> <span id="adminEmailDisplay">Admin</span>
+          <span>&#128994;</span><span id="adminEmailDisplay">Admin</span>
         </div>
-        <button class="btn btn-outline-gold btn-sm" id="logoutBtn">Logout 🚪</button>
+        <button class="btn btn-outline-gold btn-sm" id="logoutBtn">Logout</button>
       </div>
     </div>
   </header>
@@ -223,296 +64,323 @@
     <div class="admin-header">
       <div>
         <div class="eyebrow">ADMIN REAL-TIME MANAGEMENT</div>
-        <h1 style="font-size: 2.2rem;">Enquiry <span class="text-gold">Control Dashboard</span></h1>
+        <h1 style="font-size:2.2rem;">Control <span class="text-gold">Dashboard</span></h1>
       </div>
-
-      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <button class="btn btn-outline-gold btn-sm" id="exportCsvBtn">📥 Export CSV</button>
-        <button class="btn btn-gold btn-sm" id="refreshBtn">🔄 Refresh Data</button>
-      </div>
-    </div>
-
-    <!-- METRICS BAR -->
-    <div class="stats-bar">
-      <div class="admin-stat-card">
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--color-gold-primary);" id="totalEnquiriesCount">0</div>
-        <div style="font-size: 0.85rem; color: var(--color-text-subtle); margin-top:0.2rem;">Total Enquiries</div>
-      </div>
-      <div class="admin-stat-card">
-        <div style="font-size: 2.2rem; font-weight: 800; color: #25D366;" id="academyCount">0</div>
-        <div style="font-size: 0.85rem; color: var(--color-text-subtle); margin-top:0.2rem;">Academy Registrations</div>
-      </div>
-      <div class="admin-stat-card">
-        <div style="font-size: 2.2rem; font-weight: 800; color: #60A5FA;" id="studioCount">0</div>
-        <div style="font-size: 0.85rem; color: var(--color-text-subtle); margin-top:0.2rem;">Studio Sessions</div>
-      </div>
-      <div class="admin-stat-card">
-        <div style="font-size: 2.2rem; font-weight: 800; color: #F472B6;" id="eventCount">0</div>
-        <div style="font-size: 0.85rem; color: var(--color-text-subtle); margin-top:0.2rem;">Event Sound Enquiries</div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <button class="btn btn-outline-gold btn-sm" id="exportCsvBtn">Export CSV</button>
+        <button class="btn btn-gold btn-sm" id="refreshBtn">Refresh Data</button>
       </div>
     </div>
 
-    <!-- TOOLBAR FILTERS -->
-    <div class="toolbar-bar">
-      <div class="search-input-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="searchInput" placeholder="Search by name, email, phone or message...">
+    <div class="admin-tab-bar">
+      <button class="admin-tab-btn active" data-tab="enquiries">Enquiries</button>
+      <button class="admin-tab-btn" data-tab="bookings">Class Bookings</button>
+    </div>
+
+    <!-- ENQUIRIES TAB -->
+    <div class="admin-tab-panel active" id="tabEnquiries">
+      <div class="stats-bar" style="grid-template-columns:repeat(4,1fr);">
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:var(--color-gold-primary);" id="totalEnquiriesCount">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Total Enquiries</div></div>
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:#25D366;" id="academyCount">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Academy</div></div>
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:#60A5FA;" id="studioCount">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Studio Sessions</div></div>
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:#F472B6;" id="eventCount">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Event Enquiries</div></div>
       </div>
-
-      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <select id="filterService" class="form-control" style="padding: 0.6rem 1rem; width: auto;">
-          <option value="ALL">All Services</option>
-          <option value="Academy">Music Academy</option>
-          <option value="Studio">Recording Studio</option>
-          <option value="Instrument">Instrument Sales</option>
-          <option value="Event">Event Sound</option>
-        </select>
-
-        <select id="filterStatus" class="form-control" style="padding: 0.6rem 1rem; width: auto;">
-          <option value="ALL">All Statuses</option>
-          <option value="pending">Pending</option>
-          <option value="contacted">Contacted</option>
-          <option value="completed">Completed</option>
-        </select>
+      <div class="toolbar-bar">
+        <div class="search-input-box"><span class="search-icon">&#128269;</span><input type="text" id="searchInput" placeholder="Search enquiries..."></div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <select id="filterService" class="form-control" style="padding:0.6rem 1rem;width:auto;">
+            <option value="ALL">All Services</option><option value="Academy">Music Academy</option>
+            <option value="Studio">Recording Studio</option><option value="Instrument">Instrument Sales</option><option value="Event">Event Sound</option>
+          </select>
+          <select id="filterStatus" class="form-control" style="padding:0.6rem 1rem;width:auto;">
+            <option value="ALL">All Statuses</option><option value="pending">Pending</option>
+            <option value="contacted">Contacted</option><option value="completed">Completed</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-table-card">
+        <table><thead><tr>
+          <th>Date</th><th>Client Name</th><th>Contact</th><th>Service</th><th>Message</th><th>Status</th><th>Actions</th>
+        </tr></thead><tbody id="enquiriesTableBody"></tbody></table>
       </div>
     </div>
 
-    <!-- TABLE CARD -->
-    <div class="admin-table-card">
-      <table>
-        <thead>
-          <tr>
-            <th>Date & Time</th>
-            <th>Client Name</th>
-            <th>Contact Details</th>
-            <th>Service Requested</th>
-            <th>Message Snippet</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="enquiriesTableBody">
-          <!-- Populated by JavaScript -->
-        </tbody>
-      </table>
+    <!-- BOOKINGS TAB -->
+    <div class="admin-tab-panel" id="tabBookings">
+      <div class="stats-bar" style="grid-template-columns:repeat(5,1fr);">
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:var(--color-gold-primary);" id="bkgTotal">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Total Bookings</div></div>
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:#F5E18C;" id="bkgPending">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Pending</div></div>
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:#60A5FA;" id="bkgConfirmed">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Confirmed</div></div>
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:#4ADE80;" id="bkgCompleted">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Completed</div></div>
+        <div class="admin-stat-card"><div style="font-size:2.2rem;font-weight:800;color:#F87171;" id="bkgCancelled">0</div><div style="font-size:0.85rem;color:var(--color-text-subtle);margin-top:0.2rem;">Cancelled</div></div>
+      </div>
+      <div class="toolbar-bar">
+        <div class="search-input-box"><span class="search-icon">&#128269;</span><input type="text" id="bkgSearchInput" placeholder="Search bookings..."></div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <select id="bkgFilterInstrument" class="form-control" style="padding:0.6rem 1rem;width:auto;">
+            <option value="ALL">All Instruments</option>
+            <option>Drums</option><option>Saxophone</option><option>Piano</option><option>Trumpet</option>
+            <option>Guitar</option><option>Trombone</option><option>Violin</option><option>Bass Guitar</option>
+            <option>Keyboard</option><option>Clarinet</option><option>Flute</option><option>Vocal Training</option>
+          </select>
+          <select id="bkgFilterType" class="form-control" style="padding:0.6rem 1rem;width:auto;">
+            <option value="ALL">All Types</option><option>Online</option><option>Physical</option>
+          </select>
+          <select id="bkgFilterFreq" class="form-control" style="padding:0.6rem 1rem;width:auto;">
+            <option value="ALL">All Frequencies</option>
+            <option value="Once">Once a Week</option><option value="Twice">Twice a Week</option><option value="Three">Three Times</option>
+          </select>
+          <select id="bkgFilterDay" class="form-control" style="padding:0.6rem 1rem;width:auto;">
+            <option value="ALL">All Days</option>
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+            <option>Thursday</option><option>Friday</option><option>Saturday</option>
+          </select>
+          <select id="bkgFilterStatus" class="form-control" style="padding:0.6rem 1rem;width:auto;">
+            <option value="ALL">All Statuses</option>
+            <option>Pending</option><option>Confirmed</option><option>Completed</option><option>Cancelled</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-table-card">
+        <table><thead><tr>
+          <th>Reference</th><th>Student</th><th>Instrument</th><th>Type/Days</th><th>Time/Duration</th><th>Weekly Cost</th><th>Status</th><th>Actions</th>
+        </tr></thead><tbody id="bookingsTableBody"></tbody></table>
+      </div>
     </div>
   </div>
 
   <!-- ENQUIRY DETAIL MODAL -->
   <div class="detail-modal" id="detailModal">
     <div class="detail-modal-box">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
-        <h3 style="color:var(--color-gold-primary); font-family:var(--font-heading); font-size:1.3rem;">Client Enquiry Details</h3>
-        <button id="closeDetailModal" style="background:none; border:none; color:#FFF; font-size:1.5rem; cursor:pointer;">✕</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+        <h3 style="color:var(--color-gold-primary);font-family:var(--font-heading);font-size:1.3rem;">Enquiry Details</h3>
+        <button id="closeDetailModal" style="background:none;border:none;color:#FFF;font-size:1.5rem;cursor:pointer;">x</button>
       </div>
-      <div id="modalBodyContent" style="color:var(--color-text-subtle); line-height:1.7; font-size:0.95rem;">
-        <!-- Filled dynamically -->
+      <div id="modalBodyContent" style="color:var(--color-text-subtle);line-height:1.7;font-size:0.95rem;"></div>
+      <div style="margin-top:2rem;text-align:right;"><button class="btn btn-gold btn-sm" id="modalCloseBtn">Close</button></div>
+    </div>
+  </div>
+
+  <!-- BOOKING DETAIL MODAL -->
+  <div class="detail-modal" id="bookingDetailModal">
+    <div class="detail-modal-box" style="max-width:640px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+        <h3 style="color:var(--color-gold-primary);font-family:var(--font-heading);font-size:1.3rem;">Booking Details</h3>
+        <button id="closeBookingModal" style="background:none;border:none;color:#FFF;font-size:1.5rem;cursor:pointer;">x</button>
       </div>
-      <div style="margin-top:2rem; text-align:right;">
-        <button class="btn btn-gold btn-sm" id="modalCloseBtn">Close</button>
-      </div>
+      <div id="bookingModalBody" style="color:var(--color-text-subtle);line-height:1.7;font-size:0.92rem;"></div>
+      <div style="margin-top:2rem;text-align:right;"><button class="btn btn-gold btn-sm" id="bookingModalCloseBtn">Close</button></div>
     </div>
   </div>
 
   <script src="js/firebase.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      // 1. Auth Guard Check
-      const session = window.OvationDB.getAdminSession();
-      if (!session) {
-        window.location.href = 'login.html';
-        return;
-      }
+  document.addEventListener('DOMContentLoaded', async () => {
+    const session = window.OvationDB.getAdminSession();
+    if (!session) { window.location.href = 'login.html'; return; }
+    document.getElementById('adminEmailDisplay').innerText = session.fullName ? session.fullName + ' (' + (session.role||'Admin') + ')' : (session.email||'Admin');
+    document.getElementById('logoutBtn').addEventListener('click', () => { window.OvationDB.logoutAdmin(); window.location.href = 'login.html'; });
 
-      const displayName = session.fullName ? `${session.fullName} (${session.role || 'Admin'})` : (session.email || 'Admin');
-      document.getElementById('adminEmailDisplay').innerText = displayName;
-
-      document.getElementById('logoutBtn').addEventListener('click', () => {
-        window.OvationDB.logoutAdmin();
-        window.location.href = 'login.html';
-      });
-
-      // 2. Data State & Filtering
-      let allEnquiries = [];
-      const searchInput = document.getElementById('searchInput');
-      const filterService = document.getElementById('filterService');
-      const filterStatus = document.getElementById('filterStatus');
-      const refreshBtn = document.getElementById('refreshBtn');
-      const exportCsvBtn = document.getElementById('exportCsvBtn');
-
-      // 3. Real-time Subscription via Firebase Engine
-      window.OvationDB.subscribeEnquiries((data) => {
-        allEnquiries = data;
-        renderStats();
-        renderTable();
-      });
-
-      function renderStats() {
-        document.getElementById('totalEnquiriesCount').innerText = allEnquiries.length;
-        document.getElementById('academyCount').innerText = allEnquiries.filter(e => (e.serviceRequired || '').toLowerCase().includes('academy')).length;
-        document.getElementById('studioCount').innerText = allEnquiries.filter(e => (e.serviceRequired || '').toLowerCase().includes('studio')).length;
-        document.getElementById('eventCount').innerText = allEnquiries.filter(e => (e.serviceRequired || '').toLowerCase().includes('event')).length;
-      }
-
-      function renderTable() {
-        const tbody = document.getElementById('enquiriesTableBody');
-        const search = searchInput.value.toLowerCase().trim();
-        const service = filterService.value;
-        const status = filterStatus.value;
-
-        const filtered = allEnquiries.filter(item => {
-          const matchSearch = !search || 
-            (item.fullName || '').toLowerCase().includes(search) ||
-            (item.email || '').toLowerCase().includes(search) ||
-            (item.phone || '').toLowerCase().includes(search) ||
-            (item.message || '').toLowerCase().includes(search);
-
-          const matchService = service === 'ALL' || (item.serviceRequired || '').toLowerCase().includes(service.toLowerCase());
-          const matchStatus = status === 'ALL' || (item.status || 'pending').toLowerCase() === status.toLowerCase();
-
-          return matchSearch && matchService && matchStatus;
-        });
-
-        if (filtered.length === 0) {
-          tbody.innerHTML = `
-            <tr>
-              <td colspan="7" style="text-align:center; padding:3.5rem; color:var(--color-text-muted);">
-                <div style="font-size:2rem; margin-bottom:0.5rem;">📭</div>
-                No customer enquiries match your current filters.
-              </td>
-            </tr>
-          `;
-          return;
-        }
-
-        tbody.innerHTML = filtered.map(item => {
-          const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleString() : 'Recent';
-          const waPhone = (item.phone || '').replace(/[^0-9]/g, '');
-          const currentStatus = item.status || 'pending';
-
-          return `
-            <tr>
-              <td style="font-size:0.8rem; font-family:monospace;">${dateStr}</td>
-              <td style="font-weight:600; color:#FFF;">${escapeHtml(item.fullName || 'N/A')}</td>
-              <td>
-                <div style="color:#FFF;">${escapeHtml(item.email || '')}</div>
-                <div style="font-size:0.8rem; color:var(--color-gold-primary); font-weight:600;">${escapeHtml(item.phone || '')}</div>
-              </td>
-              <td><span style="color:var(--color-gold-primary); font-weight:600;">${escapeHtml(item.serviceRequired || 'General')}</span></td>
-              <td style="max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                ${escapeHtml(item.message || '')}
-              </td>
-              <td>
-                <span class="status-badge status-${currentStatus}">${currentStatus}</span>
-              </td>
-              <td>
-                <div class="action-btn-group">
-                  <button onclick="viewDetails('${item.id}')" class="btn btn-outline-gold btn-sm" style="padding:0.3rem 0.6rem; font-size:0.75rem;" title="View Details">👁️</button>
-                  <a href="https://wa.me/${waPhone}?text=${encodeURIComponent('Hello ' + (item.fullName || '') + ', regarding your enquiry for ' + (item.serviceRequired || '') + ' at Ovation Music House:')}" 
-                     target="_blank" 
-                     class="btn btn-gold btn-sm" 
-                     style="padding:0.3rem 0.6rem; font-size:0.75rem;"
-                     title="Chat on WhatsApp">
-                     💬
-                  </a>
-                  <select onchange="updateItemStatus('${item.id}', this.value)" style="background:#1E293B; color:#D4AF37; border:1px solid rgba(212,175,55,0.4); border-radius:4px; font-size:0.75rem; padding:0.25rem;">
-                    <option value="pending" ${currentStatus==='pending'?'selected':''}>Pending</option>
-                    <option value="contacted" ${currentStatus==='contacted'?'selected':''}>Contacted</option>
-                    <option value="completed" ${currentStatus==='completed'?'selected':''}>Completed</option>
-                  </select>
-                  <button onclick="deleteItem('${item.id}')" style="background:none; border:none; cursor:pointer; font-size:0.9rem;" title="Delete Record">🗑️</button>
-                </div>
-              </td>
-            </tr>
-          `;
-        }).join('');
-      }
-
-      function escapeHtml(str) {
-        return str.replace(/[&<>'"]/g, 
-          tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
-      }
-
-      window.viewDetails = (id) => {
-        const item = allEnquiries.find(e => e.id === id);
-        if (!item) return;
-        const modal = document.getElementById('detailModal');
-        const body = document.getElementById('modalBodyContent');
-
-        body.innerHTML = `
-          <p><strong>Client Name:</strong> ${escapeHtml(item.fullName || 'N/A')}</p>
-          <p><strong>Email Address:</strong> <a href="mailto:${item.email}" style="color:var(--color-gold-primary);">${escapeHtml(item.email || 'N/A')}</a></p>
-          <p><strong>Phone Number:</strong> ${escapeHtml(item.phone || 'N/A')}</p>
-          <p><strong>Requested Service:</strong> ${escapeHtml(item.serviceRequired || 'N/A')}</p>
-          <p><strong>Preferred Date:</strong> ${escapeHtml(item.preferredDate || 'N/A')}</p>
-          <p><strong>Date Received:</strong> ${item.timestamp ? new Date(item.timestamp).toLocaleString() : 'N/A'}</p>
-          <hr style="border-color:rgba(212,175,55,0.2); margin:1rem 0;">
-          <p><strong>Full Client Message:</strong></p>
-          <div style="background:rgba(15,23,42,0.9); padding:1rem; border-radius:6px; border:1px solid rgba(255,255,255,0.1); white-space:pre-wrap; margin-top:0.5rem; color:#FFF;">${escapeHtml(item.message || 'No message content provided.')}</div>
-        `;
-
-        modal.classList.add('active');
-      };
-
-      document.getElementById('closeDetailModal').addEventListener('click', () => {
-        document.getElementById('detailModal').classList.remove('active');
-      });
-      document.getElementById('modalCloseBtn').addEventListener('click', () => {
-        document.getElementById('detailModal').classList.remove('active');
-      });
-
-      window.updateItemStatus = async (id, newStatus) => {
-        await window.OvationDB.updateStatus(id, newStatus);
-        renderTable();
-      };
-
-      window.deleteItem = async (id) => {
-        if (confirm("Are you sure you want to delete this enquiry record?")) {
-          await window.OvationDB.deleteEnquiry(id);
-          renderTable();
-        }
-      };
-
-      // Export to CSV
-      exportCsvBtn.addEventListener('click', () => {
-        if (allEnquiries.length === 0) {
-          alert("No data available to export.");
-          return;
-        }
-
-        let csv = 'Timestamp,Full Name,Email,Phone,Service Required,Preferred Date,Status,Message\n';
-        allEnquiries.forEach(item => {
-          const row = [
-            `"${item.timestamp || ''}"`,
-            `"${(item.fullName || '').replace(/"/g, '""')}"`,
-            `"${(item.email || '').replace(/"/g, '""')}"`,
-            `"${(item.phone || '').replace(/"/g, '""')}"`,
-            `"${(item.serviceRequired || '').replace(/"/g, '""')}"`,
-            `"${(item.preferredDate || '').replace(/"/g, '""')}"`,
-            `"${item.status || 'pending'}"`,
-            `"${(item.message || '').replace(/"/g, '""')}"`
-          ].join(',');
-          csv += row + '\n';
-        });
-
-        const blob = new Blob([csv], { type: 'text/csv' });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.setAttribute('href', url);
-        a.setAttribute('download', `Ovation_Enquiries_${new Date().toISOString().slice(0,10)}.csv`);
-        a.click();
-      });
-
-      searchInput.addEventListener('input', renderTable);
-      filterService.addEventListener('change', renderTable);
-      filterStatus.addEventListener('change', renderTable);
-      refreshBtn.addEventListener('click', async () => {
-        allEnquiries = await window.OvationDB.getEnquiries();
-        renderStats();
-        renderTable();
+    // Tab switching
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const tabId = 'tab' + btn.dataset.tab.charAt(0).toUpperCase() + btn.dataset.tab.slice(1);
+        document.getElementById(tabId).classList.add('active');
       });
     });
+
+    function esc(str) {
+      return String(str||'').replace(/[&<>"']/g, t => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[t]||t));
+    }
+    function fmtN(n) { return '\u20A6' + (parseFloat(n)||0).toLocaleString('en-NG'); }
+
+    // ---- ENQUIRIES ----
+    let allEnquiries = [];
+    window.OvationDB.subscribeEnquiries(data => { allEnquiries = data; renderEnqStats(); renderEnqTable(); });
+
+    function renderEnqStats() {
+      document.getElementById('totalEnquiriesCount').innerText = allEnquiries.length;
+      document.getElementById('academyCount').innerText = allEnquiries.filter(e => (e.serviceRequired||'').toLowerCase().includes('academy')).length;
+      document.getElementById('studioCount').innerText  = allEnquiries.filter(e => (e.serviceRequired||'').toLowerCase().includes('studio')).length;
+      document.getElementById('eventCount').innerText   = allEnquiries.filter(e => (e.serviceRequired||'').toLowerCase().includes('event')).length;
+    }
+
+    function renderEnqTable() {
+      const tbody  = document.getElementById('enquiriesTableBody');
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const svc    = document.getElementById('filterService').value;
+      const stat   = document.getElementById('filterStatus').value;
+      const filtered = allEnquiries.filter(i => {
+        const ms = !search || (i.fullName||'').toLowerCase().includes(search)||(i.email||'').toLowerCase().includes(search)||(i.phone||'').toLowerCase().includes(search)||(i.message||'').toLowerCase().includes(search);
+        const msv = svc==='ALL'||(i.serviceRequired||'').toLowerCase().includes(svc.toLowerCase());
+        const mst = stat==='ALL'||(i.status||'pending').toLowerCase()===stat.toLowerCase();
+        return ms&&msv&&mst;
+      });
+      if (!filtered.length) { tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:3.5rem;color:var(--color-text-muted);">No enquiries found.</td></tr>'; return; }
+      tbody.innerHTML = filtered.map(i => {
+        const s = i.status||'pending'; const wp = (i.phone||'').replace(/[^0-9]/g,'');
+        return '<tr><td style="font-size:0.8rem;font-family:monospace;">'+(i.timestamp?new Date(i.timestamp).toLocaleString():'Recent')+'</td>'
+          +'<td style="font-weight:600;color:#FFF;">'+esc(i.fullName||'N/A')+'</td>'
+          +'<td><div style="color:#FFF;">'+esc(i.email||'')+'</div><div style="font-size:0.8rem;color:var(--color-gold-primary);">'+esc(i.phone||'')+'</div></td>'
+          +'<td><span style="color:var(--color-gold-primary);font-weight:600;">'+esc(i.serviceRequired||'General')+'</span></td>'
+          +'<td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+esc(i.message||'')+'</td>'
+          +'<td><span class="status-badge status-'+esc(s)+'">'+esc(s)+'</span></td>'
+          +'<td><div class="action-btn-group">'
+          +'<button onclick="viewEnqDetail(\''+esc(i.id)+'\')" class="btn btn-outline-gold btn-sm" style="padding:0.3rem 0.6rem;font-size:0.75rem;">View</button>'
+          +'<a href="https://wa.me/'+wp+'?text='+encodeURIComponent('Hello '+(i.fullName||'')+', regarding your Ovation Music House enquiry:')+'" target="_blank" class="btn btn-gold btn-sm" style="padding:0.3rem 0.6rem;font-size:0.75rem;">WA</a>'
+          +'<select onchange="updateEnqStatus(\''+esc(i.id)+'\',this.value)" style="background:#1E293B;color:#D4AF37;border:1px solid rgba(212,175,55,0.4);border-radius:4px;font-size:0.75rem;padding:0.25rem;">'
+          +'<option value="pending" '+(s==='pending'?'selected':'')+'>Pending</option>'
+          +'<option value="contacted" '+(s==='contacted'?'selected':'')+'>Contacted</option>'
+          +'<option value="completed" '+(s==='completed'?'selected':'')+'>Completed</option>'
+          +'</select>'
+          +'<button onclick="deleteEnq(\''+esc(i.id)+'\')" style="background:none;border:none;cursor:pointer;font-size:0.9rem;" title="Delete">Del</button>'
+          +'</div></td></tr>';
+      }).join('');
+    }
+
+    window.viewEnqDetail = id => {
+      const i = allEnquiries.find(e=>e.id===id); if(!i) return;
+      document.getElementById('modalBodyContent').innerHTML =
+        '<p><strong>Name:</strong> '+esc(i.fullName||'N/A')+'</p>'
+        +'<p><strong>Email:</strong> <a href="mailto:'+esc(i.email)+'" style="color:var(--color-gold-primary);">'+esc(i.email||'N/A')+'</a></p>'
+        +'<p><strong>Phone:</strong> '+esc(i.phone||'N/A')+'</p>'
+        +'<p><strong>Service:</strong> '+esc(i.serviceRequired||'N/A')+'</p>'
+        +'<p><strong>Date:</strong> '+esc(i.preferredDate||'N/A')+'</p>'
+        +'<p><strong>Received:</strong> '+(i.timestamp?new Date(i.timestamp).toLocaleString():'N/A')+'</p>'
+        +'<hr style="border-color:rgba(212,175,55,0.2);margin:1rem 0;">'
+        +'<p><strong>Message:</strong></p>'
+        +'<div style="background:rgba(15,23,42,0.9);padding:1rem;border-radius:6px;border:1px solid rgba(255,255,255,0.1);white-space:pre-wrap;margin-top:0.5rem;color:#FFF;">'+esc(i.message||'No message.')+'</div>';
+      document.getElementById('detailModal').classList.add('active');
+    };
+
+    window.updateEnqStatus = async (id,s) => { await window.OvationDB.updateStatus(id,s); renderEnqTable(); };
+    window.deleteEnq = async id => { if(confirm('Delete this enquiry?')){ await window.OvationDB.deleteEnquiry(id); renderEnqTable(); } };
+
+    document.getElementById('searchInput').addEventListener('input', renderEnqTable);
+    document.getElementById('filterService').addEventListener('change', renderEnqTable);
+    document.getElementById('filterStatus').addEventListener('change', renderEnqTable);
+    document.getElementById('closeDetailModal').addEventListener('click', ()=>document.getElementById('detailModal').classList.remove('active'));
+    document.getElementById('modalCloseBtn').addEventListener('click', ()=>document.getElementById('detailModal').classList.remove('active'));
+
+    // ---- BOOKINGS ----
+    let allBookings = [];
+    window.OvationDB.subscribeBookings(data => { allBookings = data; renderBkgStats(); renderBkgTable(); });
+
+    function renderBkgStats() {
+      document.getElementById('bkgTotal').innerText     = allBookings.length;
+      document.getElementById('bkgPending').innerText   = allBookings.filter(b=>b.status==='Pending').length;
+      document.getElementById('bkgConfirmed').innerText = allBookings.filter(b=>b.status==='Confirmed').length;
+      document.getElementById('bkgCompleted').innerText = allBookings.filter(b=>b.status==='Completed').length;
+      document.getElementById('bkgCancelled').innerText = allBookings.filter(b=>b.status==='Cancelled').length;
+    }
+
+    function renderBkgTable() {
+      const tbody  = document.getElementById('bookingsTableBody');
+      const search = document.getElementById('bkgSearchInput').value.toLowerCase().trim();
+      const instr  = document.getElementById('bkgFilterInstrument').value;
+      const type   = document.getElementById('bkgFilterType').value;
+      const freq   = document.getElementById('bkgFilterFreq').value;
+      const day    = document.getElementById('bkgFilterDay').value;
+      const stat   = document.getElementById('bkgFilterStatus').value;
+      const filtered = allBookings.filter(b => {
+        const ms = !search||(b.bookingReference||'').toLowerCase().includes(search)||(b.fullName||'').toLowerCase().includes(search)||(b.email||'').toLowerCase().includes(search)||(b.instrument||'').toLowerCase().includes(search)||(b.phoneNumber||'').toLowerCase().includes(search);
+        const mi = instr==='ALL'||(b.instrument||'').toLowerCase().includes(instr.toLowerCase());
+        const mt = type==='ALL'||(b.classType||'').toLowerCase()===type.toLowerCase();
+        const mf = freq==='ALL'||(b.frequency||'').toLowerCase().includes(freq.toLowerCase());
+        const md = day==='ALL'||(b.selectedDays||'').toLowerCase().includes(day.toLowerCase());
+        const mst = stat==='ALL'||(b.status||'Pending')===stat;
+        return ms&&mi&&mt&&mf&&md&&mst;
+      });
+      if (!filtered.length) { tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:3.5rem;color:var(--color-text-muted);">No bookings found.</td></tr>'; return; }
+      tbody.innerHTML = filtered.map(b => {
+        const s = b.status||'Pending'; const d = b.createdAt?new Date(b.createdAt).toLocaleDateString():'Recent';
+        return '<tr>'
+          +'<td><div style="font-family:monospace;font-size:0.76rem;color:var(--color-gold-primary);font-weight:700;">'+esc(b.bookingReference||'-')+'</div><div style="font-size:0.7rem;color:var(--color-text-muted);">'+esc(d)+'</div></td>'
+          +'<td><div style="font-weight:600;color:#FFF;">'+esc(b.fullName||'N/A')+'</div><div style="font-size:0.75rem;color:var(--color-text-muted);">'+esc(b.phoneNumber||b.email||'')+'</div></td>'
+          +'<td><span style="color:var(--color-gold-primary);font-weight:700;">'+esc(b.instrument||'-')+'</span></td>'
+          +'<td><div style="font-size:0.82rem;">'+esc(b.classType||'-')+'</div><div style="font-size:0.72rem;color:var(--color-text-muted);">'+esc(b.selectedDays||'-')+'</div></td>'
+          +'<td><div style="font-size:0.82rem;">'+esc(b.selectedTime||'-')+'</div><div style="font-size:0.72rem;color:var(--color-text-muted);">'+esc(b.duration||'-')+'</div></td>'
+          +'<td style="font-weight:700;color:var(--color-gold-primary);">'+(b.weeklyCost?fmtN(b.weeklyCost)+'/wk':'-')+'</td>'
+          +'<td><span class="status-badge status-'+esc(s)+'">'+esc(s)+'</span></td>'
+          +'<td><div class="action-btn-group">'
+          +'<button onclick="viewBkgDetail(\''+esc(b.id)+'\')" class="btn btn-outline-gold btn-sm" style="padding:0.3rem 0.6rem;font-size:0.72rem;">View</button>'
+          +'<select onchange="updateBkgStatus(\''+esc(b.id)+'\',this.value)" style="background:#1E293B;color:#D4AF37;border:1px solid rgba(212,175,55,0.4);border-radius:4px;font-size:0.72rem;padding:0.25rem;">'
+          +'<option value="Pending" '+(s==='Pending'?'selected':'')+'>Pending</option>'
+          +'<option value="Confirmed" '+(s==='Confirmed'?'selected':'')+'>Confirmed</option>'
+          +'<option value="Completed" '+(s==='Completed'?'selected':'')+'>Completed</option>'
+          +'<option value="Cancelled" '+(s==='Cancelled'?'selected':'')+'>Cancelled</option>'
+          +'</select></div></td></tr>';
+      }).join('');
+    }
+
+    window.viewBkgDetail = id => {
+      const b = allBookings.find(x=>x.id===id); if(!b) return;
+      document.getElementById('bookingModalBody').innerHTML =
+        '<div style="background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.2);border-radius:8px;padding:0.75rem 1rem;margin-bottom:1.25rem;">'
+        +'<div style="font-family:monospace;font-size:1.1rem;font-weight:900;color:var(--color-gold-primary);letter-spacing:2px;">'+esc(b.bookingReference||'-')+'</div>'
+        +'<div style="font-size:0.72rem;color:var(--color-text-muted);margin-top:0.25rem;">Booking Ref &bull; '+(b.createdAt?new Date(b.createdAt).toLocaleString():'N/A')+'</div></div>'
+        +'<p style="font-weight:700;color:var(--color-gold-primary);text-transform:uppercase;font-size:0.78rem;letter-spacing:1px;margin-bottom:0.75rem;">Student Information</p>'
+        +'<p><strong>Name:</strong> '+esc(b.fullName||'N/A')+'</p>'
+        +'<p><strong>Phone:</strong> '+esc(b.phoneNumber||'N/A')+'</p>'
+        +'<p><strong>Email:</strong> <a href="mailto:'+esc(b.email)+'" style="color:var(--color-gold-primary);">'+esc(b.email||'N/A')+'</a></p>'
+        +'<hr style="border-color:rgba(212,175,55,0.15);margin:1rem 0;">'
+        +'<p style="font-weight:700;color:var(--color-gold-primary);text-transform:uppercase;font-size:0.78rem;letter-spacing:1px;margin-bottom:0.75rem;">Class Information</p>'
+        +'<p><strong>Instrument:</strong> '+esc(b.instrument||'N/A')+'</p>'
+        +'<p><strong>Class Type:</strong> '+esc(b.classType||'N/A')+'</p>'
+        +(b.physicalAddress?'<p><strong>Address:</strong> '+esc(b.physicalAddress)+'</p>':'')
+        +'<p><strong>Frequency:</strong> '+esc(b.frequency||'N/A')+'</p>'
+        +'<p><strong>Days:</strong> '+esc(b.selectedDays||'N/A')+'</p>'
+        +'<p><strong>Time:</strong> '+esc(b.selectedTime||'N/A')+'</p>'
+        +'<p><strong>Duration:</strong> '+esc(b.duration||'N/A')+'</p>'
+        +'<hr style="border-color:rgba(212,175,55,0.15);margin:1rem 0;">'
+        +'<p style="font-weight:700;color:var(--color-gold-primary);text-transform:uppercase;font-size:0.78rem;letter-spacing:1px;margin-bottom:0.75rem;">Pricing</p>'
+        +'<p><strong>Per Session:</strong> <span style="color:var(--color-gold-primary);">'+(b.pricePerSession?fmtN(b.pricePerSession):'-')+'</span></p>'
+        +'<p><strong>Weekly Cost:</strong> <span style="color:var(--color-gold-primary);font-size:1.1rem;font-weight:800;">'+(b.weeklyCost?fmtN(b.weeklyCost):'-')+'</span></p>'
+        +'<hr style="border-color:rgba(212,175,55,0.15);margin:1rem 0;">'
+        +'<p><strong>Status:</strong> <span class="status-badge status-'+esc(b.status||'Pending')+'">'+esc(b.status||'Pending')+'</span></p>';
+      document.getElementById('bookingDetailModal').classList.add('active');
+    };
+
+    window.updateBkgStatus = async (id,s) => { await window.OvationDB.updateBookingStatus(id,s); renderBkgTable(); };
+
+    document.getElementById('closeBookingModal').addEventListener('click', ()=>document.getElementById('bookingDetailModal').classList.remove('active'));
+    document.getElementById('bookingModalCloseBtn').addEventListener('click', ()=>document.getElementById('bookingDetailModal').classList.remove('active'));
+    ['bkgSearchInput'].forEach(id=>{ const el=document.getElementById(id); if(el) el.addEventListener('input', renderBkgTable); });
+    ['bkgFilterInstrument','bkgFilterType','bkgFilterFreq','bkgFilterDay','bkgFilterStatus'].forEach(id=>{ const el=document.getElementById(id); if(el) el.addEventListener('change', renderBkgTable); });
+
+    // Refresh
+    document.getElementById('refreshBtn').addEventListener('click', async () => {
+      allEnquiries = await window.OvationDB.getEnquiries(); renderEnqStats(); renderEnqTable();
+      allBookings  = await window.OvationDB.getBookings();  renderBkgStats(); renderBkgTable();
+    });
+
+    // Export CSV
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      const isBookings = document.querySelector('.admin-tab-btn.active')?.dataset.tab === 'bookings';
+      if (isBookings) {
+        if (!allBookings.length) { alert('No bookings to export.'); return; }
+        let csv = 'Reference,Student,Phone,Email,Instrument,Type,Address,Frequency,Days,Time,Duration,Per Session,Weekly Cost,Status,Date\n';
+        allBookings.forEach(b => { csv += ['"'+(b.bookingReference||'')+'"','"'+(b.fullName||'')+'"','"'+(b.phoneNumber||'')+'"','"'+(b.email||'')+'"','"'+(b.instrument||'')+'"','"'+(b.classType||'')+'"','"'+(b.physicalAddress||'')+'"','"'+(b.frequency||'')+'"','"'+(b.selectedDays||'')+'"','"'+(b.selectedTime||'')+'"','"'+(b.duration||'')+'"','"'+(b.pricePerSession||0)+'"','"'+(b.weeklyCost||0)+'"','"'+(b.status||'Pending')+'"','"'+(b.createdAt||'')+'"'].join(',')+'\n'; });
+        dlCSV(csv,'Ovation_Bookings');
+      } else {
+        if (!allEnquiries.length) { alert('No enquiries to export.'); return; }
+        let csv = 'Timestamp,Name,Email,Phone,Service,Date,Status,Message\n';
+        allEnquiries.forEach(i => { csv += ['"'+(i.timestamp||'')+'"','"'+(i.fullName||'').replace(/"/g,'""')+'"','"'+(i.email||'')+'"','"'+(i.phone||'')+'"','"'+(i.serviceRequired||'')+'"','"'+(i.preferredDate||'')+'"','"'+(i.status||'pending')+'"','"'+(i.message||'').replace(/"/g,'""')+'"'].join(',')+'\n'; });
+        dlCSV(csv,'Ovation_Enquiries');
+      }
+    });
+
+    function dlCSV(csv,name) {
+      const blob = new Blob([csv],{type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href=url; a.download=name+'_'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
+      URL.revokeObjectURL(url);
+    }
+  });
   </script>
 </body>
 </html>
