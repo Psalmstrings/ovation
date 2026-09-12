@@ -51,6 +51,11 @@
     grid-template-columns: 1fr;
   }
 
+  .contact-grid{
+  display: block; 
+  gap: 3rem;
+}
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
